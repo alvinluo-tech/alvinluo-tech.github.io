@@ -10,11 +10,19 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="Chinese version:
-好的，这是一个为你们四人小组定制的、使用“泰坦尼克号数据集”的中文版故事线，其中包含了你提议的“破译救生艇代码”挑战。">
+<meta name="description" content="**Chinese version:**
+
+### 故事背景
+
+**主题：** 泰坦 complément号上的时空裂痕
+**你的角色：** 你们是一队时间旅行者。">
 <meta property="og:title" content="assignment inspiration">
-<meta property="og:description" content="Chinese version:
-好的，这是一个为你们四人小组定制的、使用“泰坦尼克号数据集”的中文版故事线，其中包含了你提议的“破译救生艇代码”挑战。">
+<meta property="og:description" content="**Chinese version:**
+
+### 故事背景
+
+**主题：** 泰坦 complément号上的时空裂痕
+**你的角色：** 你们是一队时间旅行者。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://alvinluo-tech.github.io/post/assignment%20inspiration.html">
 <meta property="og:image" content="https://i.ibb.co/BVmnyXdj/20251023152355-28-8.jpg">
@@ -75,10 +83,9 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><p>Chinese version:<br>
-好的，这是一个为你们四人小组定制的、使用“泰坦尼克号数据集”的中文版故事线，其中包含了你提议的“破译救生艇代码”挑战。</p>
+<div class="markdown-body" id="postBody"><p><strong>Chinese version:</strong></p>
 <h3>故事背景</h3>
-<p><strong>主题：</strong> 泰坦尼克号上的时空裂痕<br>
+<p><strong>主题：</strong> 泰坦 complément号上的时空裂痕<br>
 <strong>你的角色：</strong> 你们是一队时间旅行者。在一次时空跳跃中，时间机器发生故障，将你们紧急弹射到了 1912 年 4 月 14 日的泰坦尼克号上。<br>
 <strong>你的目标：</strong> 你们必须在船沉没前，在船上找到 4 个丢失的“时空坐标碎片”。集齐这 4 个坐标才能重新定位你们的时间机器并安全离开。<br>
 <strong>密室文档：</strong> 你们生成的 HTML 文档就是给“游戏运营者 (GM)”的指南，GM 将引导玩家（时间旅行者）完成这一系列挑战。</p>
@@ -86,18 +93,18 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h3>挑战 1 (成员 A)：“事务长办公室” (找出异常数据)</h3>
 <ul>
 <li><strong>故事：</strong> 你们刚登船就被当作偷渡者抓住了。你们被锁在事务长的办公室里，必须证明自己的智慧才能逃脱。在办公桌上有一叠乘客登记卡，你们必须找出其中那张“伪造的”卡片。</li>
-<li><strong>挑战：</strong> 向玩家展示 5-6 张“乘客卡片”（即 5-6 个数据行）。其中 5 张是从数据集中随机抽取的<em>真实</em>乘客数据，而有 1 张是你们的程序<em>生成</em>的“伪造数据”。</li>
+<li>[cite_start]<strong>挑战：</strong> 向玩家展示 5-6 张“乘客卡片”（即 5-6 个数据行）。其中 5 张是从数据集中随机抽取的<em>真实</em>乘客数据，而有 1 张是你们的程序<em>生成</em>的“伪造数据” [cite: 51, 52]。</li>
 <li><strong>如何生成 (第 5 阶段)：</strong> 这个伪造数据在统计上是不可能的。例如：一个 3 等舱乘客 (<code class="notranslate">Pclass</code>=3) 却支付了 500 英镑的票价 (<code class="notranslate">Fare</code>)（远高于 1 等舱的票价）。</li>
-<li><strong>玩家任务：</strong> 必须找出哪张乘客卡是“伪造的”。</li>
-<li><strong>线索 (Hints)：</strong> 提供一些真实的数据可视化图表作为“船务手册”，例如“各舱位平均票价分布”的箱形图。</li>
+<li>[cite_start]<strong>玩家任务：</strong> 必须找出哪张乘客卡是“伪造的” [cite: 51]。</li>
+<li>[cite_start]<strong>线索 (Hints)：</strong> 提供一些真实的数据可视化图表作为“船务手册”，例如“各舱位平均票价分布”的箱形图 [cite: 53]。</li>
 <li><strong>获得：</strong> 藏在伪造卡片下的 <strong>时空坐标碎片 1</strong>。</li>
 </ul>
 <hr>
 <h3>挑战 2 (成员 B)：“马可尼无线电室” (填字/词汇游戏)</h3>
 <ul>
 <li><strong>故事：</strong> 第一个碎片指引你们前往马可尼（无线电）室。门被一个键盘锁锁住了。墙上贴着一张无线电操作员（为打发时间）没做完的填字游戏，你们意识到，这个游戏的答案就是开门密码。</li>
-<li><strong>挑战：</strong> 一个填字游戏。</li>
-<li><strong>如何生成 (第 5 阶段)：</strong> 答案全部来自数据集的“字段名”(Column Names) 或相关概念。
+<li>[cite_start]<strong>挑战：</strong> 一个填字游戏 [cite: 45]。</li>
+<li>[cite_start]<strong>如何生成 (第 5 阶段)：</strong> 答案全部来自数据集的“字段名”(Column Names) 或与泰坦尼克号相关的“概念” [cite: 45]。
 <ul>
 <li><strong>示例线索 (Answers)：</strong>
 <ul>
@@ -110,7 +117,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </ul>
 </li>
 <li><strong>玩家任务：</strong> 完成填字游戏，获得密码。</li>
-<li><strong>线索 (Hints)：</strong> 可以提供一两个答案的字母作为提示。</li>
+<li>[cite_start]<strong>线索 (Hints)：</strong> 可以提供一两个答案的字母作为提示 [cite: 46]。</li>
 <li><strong>获得：</strong> 你们打开了门，在电报机上找到了 <strong>时空坐标碎片 2</strong>。</li>
 </ul>
 <hr>
@@ -119,30 +126,120 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li><strong>故事：</strong> 第二个碎片指引你们前往甲板。你们在一个救生艇站旁发现了一个上锁的补给箱。锁是一个 4 位数的键盘锁。附近一张军官的笔记上，写着 4 名特定乘客的资料。你们意识到，这个 4 位数密码一定是对他们命运的<em>预测</em>。</li>
 <li><strong>挑战：</strong>
 <ol>
-<li>程序生成一个可视化图表（例如，一张展示按 <code class="notranslate">Sex</code>、<code class="notranslate">Pclass</code> 和 <code class="notranslate">Age</code> 划分的生还率图表）。</li>
+<li>[cite_start]程序生成一个可视化图表（例如，一张展示生还率的图表）[cite: 49]。</li>
 <li>程序接着展示 4 名乘客的资料（例如，“乘客 1：女性，1 等舱，30 岁”，“乘客 2：男性，3 等舱，25 岁”等）。</li>
 <li>玩家必须使用图表来预测每位乘客是“生还”（代码=1）还是“未生还”（代码=0）。</li>
 </ol>
 </li>
 <li><strong>玩家任务：</strong> 输入正确的 4 位二进制代码（例如 <code class="notranslate">1011</code>）来打开箱子。</li>
 <li><strong>如何生成 (第 5 阶段)：</strong> 程序从数据集中随机选择 4 名乘客，并展示他们的特征。正确的“答案”就是他们（在数据集中）的实际 <code class="notranslate">Survived</code> 值（1 或 0）。</li>
-<li><strong>线索 (Hints)：</strong> 如果玩家输错代码，可以揭示一个额外的、未在图表上显示的数据作为提示。“提示：乘客 2 支付的票价为 7 英镑”（一个非常低的价格，暗示生还率低）。</li>
+<li>[cite_start]<strong>线索 (Hints)：</strong> 如果玩家输错代码，可以揭示一个额外的、未在图表上显示的数据作为提示。“提示：乘客 2 支付的票价为 7 英镑” [cite: 49, 50]。</li>
 <li><strong>获得：</strong> 箱子打开，里面是 <strong>时空坐标碎片 3</strong>。</li>
 </ul>
 <hr>
-<h3>挑战 4 (成员 D)：“船长的名单” (模式识别)</h3>
+<h3>挑战 4 (成员 D)：“平衡救生艇载重” (数据聚合/计算)</h3>
 <ul>
-<li><strong>故事：</strong> 船正在下沉，你们到达了最后的集合点。一名慌张的船员拿着一份 6 人的简短名单。“我被告知要从这份名单里救出一个 3 人的‘优先小组’，但墨水弄脏了！我看不清！快帮我认出他们！”</li>
-<li><strong>挑战：</strong> 这份名单是数据表，混合了<em>真实生还者</em>和<em>真实遇难者</em>的数据。</li>
+<li><strong>故事：</strong> 警报大作，船体正在倾斜！你们奔向最后的集合点，那里只剩下一艘救生艇。一名工程师正对着一份乘客名单和一台计算器大喊：“不行，这艘船会翻！我必须知道一个精确的数字来配平重量！”</li>
+<li><strong>他交给你们一张纸条：</strong> “快！我必须知道这份名单上，所有<em>1 等舱</em> (<code class="notranslate">Pclass=1</code>) 中，年龄在 <em>30 岁以上</em> (<code class="notranslate">Age &gt; 30</code>) 的<em>女性</em> (<code class="notranslate">Sex='female'</code>)，她们所支付的<em>平均票价</em> (<code class="notranslate">Fare</code> 的 <code class="notranslate">MEAN</code>) 是多少？把这个数字输入配平系统！”</li>
+<li><strong>挑战：</strong> 这是一个<strong>数据聚合任务</strong>。玩家不能再依赖“直觉”，而必须使用“乘客名单”（数据集）进行精确计算。</li>
+<li><strong>玩家任务：</strong>
+<ol>
+<li>筛选 <code class="notranslate">Pclass</code> == 1</li>
+<li>再筛选 <code class="notranslate">Sex</code> == 'female'</li>
+<li>再筛选 <code class="notranslate">Age</code> &gt; 30</li>
+<li>计算所有符合上述条件的乘客的 <code class="notranslate">Fare</code> (票价) 的<strong>平均值 (MEAN)</strong>。</li>
+</ol>
+</li>
 <li><strong>如何生成 (第 5 阶段)：</strong>
 <ul>
-<li>从数据集中随机抽取 3 名<em>生还</em>的乘客 (<code class="notranslate">Survived</code>=1) 和 3 名<em>未生还</em>的乘客 (<code class="notranslate">Survived</code>=0)。</li>
-<li>将这 6 人的数据（例如：<code class="notranslate">Pclass</code>, <code class="notranslate">Sex</code>, <code class="notranslate">Age</code>）混合在一起展示给玩家。</li>
+<li>你们的程序将<em>随机</em>组合一个聚合任务。例如：</li>
+<li>随机选择 2-3 个筛选条件（例如 <code class="notranslate">Pclass=2</code>, <code class="notranslate">Embarked='Q'</code>）。</li>
+<li>随机选择一个聚合函数（例如 <code class="notranslate">SUM</code> 总和, <code class="notranslate">MEAN</code> 平均值, <code class="notranslate">COUNT</code> 计数）。</li>
+<li>随机选择一个要计算的数字列（例如 <code class="notranslate">Fare</code> 票价, <code class="notranslate">Age</code> 年龄）。</li>
+<li>（这个挑战是你们自己设计的，基于对数据集进行计算的原则）。</li>
 </ul>
 </li>
-<li><strong>玩家任务：</strong> 船员告诉你们：“这艘救生艇只能再坐 3 个人！快告诉我这份名单上哪 3 个人是‘优先乘客’（即生还者）！” 玩家必须根据他们在前几个挑战中积累的“直觉”（例如，女性和儿童优先、头等舱优先）来正确识别出那 3 个生还者。</li>
-<li><strong>线索 (Hints)：</strong> 提供一个简单的可视化图表，例如“不同性别的生还率对比”或“不同舱位的生还率对比”。</li>
-<li><strong>获得：</strong> 你们正确地指认了 3 人。当他们登上救生艇时，其中一人交给你们一个奇怪的装置：<strong>时空坐标碎片 4</strong>。你们集齐了所有四个碎片，并在船沉没前成功逃脱了时间线。</li>
+<li>[cite_start]<strong>线索 (Hints)：</strong> "提示：确保你用的是<em>平均值</em>，而不是总和！" [cite: 42]</li>
+<li><strong>获得：</strong> 你们算出了正确的数字（例如 "87.5"）并输入系统。救生艇的配重调整完毕，成功释放。在救生艇的座位下，你们找到了 <strong>时空坐标碎片 4</strong>。</li>
+</ul>
+<p><strong>English version:</strong></p>
+<h3>Story Background</h3>
+<p><strong>Theme:</strong> The Titanic Time-Rift<br>
+<strong>Your Role:</strong> You are a group of time-travelers. During a routine jump, your temporal engines malfunctioned, causing an emergency ejection. You've landed on the RMS Titanic on April 14, 1912, just hours before it sinks.<br>
+<strong>Your Goal:</strong> Your time machine is "phased," and to bring it back into your timeline, you must find 4 "Temporal Coordinate Fragments" that were scattered across the ship during your crash-landing. You must collect all 4 and get to the rendezvous point before the ship sinks.<br>
+<strong>The Document:</strong> The HTML document you generate is the "Game Master's Guide," which provides all the instructions, challenges, hints, and answers for someone running the escape room.</p>
+<hr>
+<h3>Challenge 1 (Member A): "The Purser's Office" (Spot the Rogue Data Item)</h3>
+<ul>
+<li><strong>Story:</strong> You are immediately apprehended by a ship's officer. Your names are not on the official passenger manifest. He suspects you are stowaways and locks you in the Purser's office. On the desk is a stack of passenger registration cards, one of which the Purser has marked as "suspicious."</li>
+<li><strong>The Challenge:</strong> The players are presented with 5-6 "Passenger Cards" (data rows). Five are <em>real</em> passengers randomly selected from the dataset; one is a "rogue item" generated by your program.</li>
+<li><strong>How to Generate (Stage 5):</strong> The rogue item must be a statistical outlier. For example: A <code class="notranslate">Pclass=3</code> (Third Class) passenger who paid a <code class="notranslate">Fare</code> of £500 (far higher than any First Class ticket).</li>
+<li><strong>Player's Task:</strong> Identify which passenger card is the "forgery."</li>
+<li><strong>Hints:</strong> The officer's "manual" is left on the desk, which includes visualizations of the <em>whole dataset</em>. For example, a box plot of <code class="notranslate">Fare</code> by <code class="notranslate">Pclass</code>.</li>
+<li><strong>Reward:</strong> Hidden beneath the forged card is the <strong>Temporal Coordinate Fragment 1</strong>.</li>
+</ul>
+<hr>
+<h3>Challenge 2 (Member B): "The Marconi Room" (Crossword/Vocabulary Puzzle)</h3>
+<ul>
+<li><strong>Story:</strong> The first fragment contains a cryptic clue: "The next answer travels on the airwaves." This leads you to the Marconi radio room. The door is locked with a simple keypad. A note on the wall from the radio operator has a crossword puzzle he was working on. The solution to the crossword <em>is</em> the keypad code.</li>
+<li><strong>The Challenge:</strong> A crossword puzzle.</li>
+<li><strong>How to Generate (Stage 5):</strong> The answers are all terms taken from the dataset's "field names" (column names) or related concepts from a paper.
+<ul>
+<li><strong>Example Clues (Answers):</strong>
+<ul>
+<li>"Passenger's parents or children aboard" (Answer: <code class="notranslate">PARCH</code>)</li>
+<li>"Price paid for the ticket" (Answer: <code class="notranslate">FARE</code>)</li>
+<li>"Port of embarkation (C, Q, or S)" (Answer: <code class="notranslate">EMBARKED</code>)</li>
+<li>"Number of siblings or spouses aboard" (Answer: <code class="notranslate">SIBSP</code>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Player's Task:</strong> Complete the puzzle to find the code.</li>
+<li><strong>Hints:</strong> One or two of the answers can be provided as a hint.</li>
+<li><strong>Reward:</strong> You unlock the door and find <strong>Temporal Coordinate Fragment 2</strong> attached to the transmitter.</li>
+</ul>
+<hr>
+<h3>Challenge 3 (Member C): "Decoding the Lifeboat Code" (Classification Puzzle)</h3>
+<ul>
+<li><strong>Story:</strong> The second fragment points to the boat deck. You find a locked supply chest next to a lifeboat station. The lock is a 4-digit keypad. A nearby note from an officer contains the profiles of 4 specific passengers. You realize the 4-digit code must be a <em>prediction</em> of their fate.</li>
+<li><strong>The Challenge:</strong>
+<ol>
+<li>The program generates a visualization (e.g., a chart showing survival rates).</li>
+<li>The program then presents the profiles of 4 specific passengers (e.g., "Passenger 1: Female, Pclass=1, Age=30", "Passenger 2: Male, Pclass=3, Age=25", etc.).</li>
+<li>The players must use the visualization to predict if each passenger <code class="notranslate">Survived</code> (code = 1) or <code class="notranslate">Did Not Survive</code> (code = 0).</li>
+</ol>
+</li>
+<li><strong>Player's Task:</strong> Enter the correct 4-digit binary code (e.g., <code class="notranslate">1011</code>) to unlock the chest.</li>
+<li><strong>How to Generate (Stage 5):</strong> The program randomly selects 4 passengers from the dataset and presents their features. The "answer" is simply their <em>actual</em> <code class="notranslate">Survived</code> value (1 or 0) from the dataset.</li>
+<li><strong>Hints:</strong> If the players get the code wrong, you can reveal an additional, non-visualized piece of data as a hint. "Hint: Passenger 2 paid a fare of £7."</li>
+<li><strong>Reward:</strong> The chest opens, revealing <strong>Temporal Coordinate Fragment 3</strong>.</li>
+</ul>
+<hr>
+<h3>Challenge 4 (Member D): "Balancing the Lifeboat" (Data Aggregation/Calculation)</h3>
+<ul>
+<li><strong>Story:</strong> Alarms are blaring as the ship tilts! You race to the final rendezvous point, where a single lifeboat remains. An engineer is frantically yelling at a manifest and a calculator: "It's no good, the boat will capsize! I need a precise number to balance the load!"</li>
+<li><strong>He hands you a note:</strong> "Quick! I must know the <em>MEAN average fare</em> (<code class="notranslate">Fare</code>) paid by all <em>female</em> (<code class="notranslate">Sex='female'</code>) passengers in <em>First Class</em> (<code class="notranslate">Pclass=1</code>) who were <em>over 30 years old</em> (<code class="notranslate">Age &gt; 30</code>). Enter that number into the ballast system!"</li>
+<li><strong>The Challenge:</strong> This is a <strong>data aggregation task</strong>. Players can no longer use "intuition"; they must perform a precise calculation based on the dataset.</li>
+<li><strong>Player's Task:</strong>
+<ol>
+<li>Filter for <code class="notranslate">Pclass</code> == 1</li>
+<li>Filter for <code class="notranslate">Sex</code> == 'female'</li>
+<li>Filter for <code class="notranslate">Age</code> &gt; 30</li>
+<li>Calculate the <strong>MEAN</strong> of the <code class="notranslate">Fare</code> for all passengers who meet these criteria.</li>
+</ol>
+</li>
+<li><strong>How to Generate (Stage 5):</strong>
+<ul>
+<li>Your program will <em>randomly</em> combine an aggregation task. For example:</li>
+<li>Randomly select 2-3 filter conditions (e.g., <code class="notranslate">Pclass=2</code>, <code class="notranslate">Embarked='Q'</code>).</li>
+<li>Randomly select an aggregation function (e.g., <code class="notranslate">SUM</code>, <code class="notranslate">MEAN</code>, <code class="notranslate">COUNT</code>).</li>
+<li>Randomly select a numeric column to calculate (e.g., <code class="notranslate">Fare</code>, <code class="notranslate">Age</code>).</li>
+<li>(This challenge is based on your own design, following the principle of calculating from the dataset).</li>
+</ul>
+</li>
+<li><strong>Hints:</strong> "Hint: Make sure you are calculating the <em>average</em>, not the total!"</li>
+<li><strong>Reward:</strong> You calculate the correct number (e.g., "87.5") and enter it. The lifeboat's ballast is balanced, and it successfully launches. Tucked under a seat, you find the <strong>Temporal Coordinate Fragment 4</strong>.</li>
 </ul></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
