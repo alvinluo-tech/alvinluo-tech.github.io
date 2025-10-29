@@ -1,0 +1,209 @@
+import sitemap from "@astrojs/sitemap";
+import svelte from "@astrojs/svelte";
+import tailwind from "@astrojs/tailwind";
+import { pluginCollapsibleSections } from "@expressive-code/plugin-collapsible-sections";
+import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
+import swup from "@swup/astro";
+import { defineConfig } from "astro/config";
+import expressiveCode from "astro-expressive-code";
+import icon from "astro-icon";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeComponents from "rehype-components"; /* Render the custom directive content */
+import rehypeKatex from "rehype-katex";
+import rehypeSlug from "rehype-slug";
+import remarkDirective from "remark-directive"; /* Handle directives */
+import remarkGithubAdmonitionsToDirectives from "remark-github-admonitions-to-directives";
+import remarkMath from "remark-math";
+import remarkSectionize from "remark-sectionize";
+import { expressiveCodeConfig, siteConfig } from "./src/config";
+import { pluginCustomCopyButton } from "./src/plugins/expressive-code/custom-copy-button.js";
+import { pluginLanguageBadge } from "./src/plugins/expressive-code/language-badge.ts";
+import { AdmonitionComponent } from "./src/plugins/rehype-component-admonition.mjs";
+import { GithubCardComponent } from "./src/plugins/rehype-component-github-card.mjs";
+import { rehypeMermaid } from "./src/plugins/rehype-mermaid.mjs";
+import { parseDirectiveNode } from "./src/plugins/remark-directive-rehype.js";
+import { remarkExcerpt } from "./src/plugins/remark-excerpt.js";
+import { remarkMermaid } from "./src/plugins/remark-mermaid.js";
+import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
+import mdx from "@astrojs/mdx";
+// https://astro.build/config
+export default defineConfig({
+	site: "https://alvinluo-tech.github.io",
+
+	base: "/",
+	trailingSlash: "always",
+	integrations: [
+		tailwind({
+			nesting: true,
+		}),
+		swup({
+			theme: false,
+			animationClass: "transition-swup-", // see https://swup.js.org/options/#animationselector
+			// the default value `transition-` cause transition delay
+			// when the Tailwind class `transition-all` is used
+			containers: ["main"],
+			smoothScrolling: true,
+			cache: true,
+			preload: true,
+			accessibility: true,
+			updateHead: true,
+			updateBodyClass: false,
+			globalInstance: true,
+			// 滚动相关配置优化
+			resolveUrl: (url) => url,
+			animateHistoryBrowsing: false,
+			skipPopStateHandling: (event) => {
+				// 跳过锚点链接的处理，让浏览器原生处理
+				return event.state && event.state.url && event.state.url.includes("#");
+			},
+		}),
+		icon({
+			include: {
+				"preprocess: vitePreprocess(),": ["*"],
+				"fa6-brands": ["*"],
+				"fa6-regular": ["*"],
+				"fa6-solid": ["*"],
+				mdi: ["*"],
+			},
+		}),
+		expressiveCode({
+			themes: [expressiveCodeConfig.theme, expressiveCodeConfig.theme],
+			plugins: [
+				pluginCollapsibleSections(),
+				pluginLineNumbers(),
+				pluginLanguageBadge(),
+				pluginCustomCopyButton(),
+			],
+			defaultProps: {
+				wrap: true,
+				overridesByLang: {
+					shellsession: {
+						showLineNumbers: false,
+					},
+				},
+			},
+			styleOverrides: {
+				codeBackground: "var(--codeblock-bg)",
+				borderRadius: "0.75rem",
+				borderColor: "none",
+				codeFontSize: "0.875rem",
+				codeFontFamily:
+					"'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+				codeLineHeight: "1.5rem",
+				frames: {
+					editorBackground: "var(--codeblock-bg)",
+					terminalBackground: "var(--codeblock-bg)",
+					terminalTitlebarBackground: "var(--codeblock-topbar-bg)",
+					editorTabBarBackground: "var(--codeblock-topbar-bg)",
+					editorActiveTabBackground: "none",
+					editorActiveTabIndicatorBottomColor: "var(--primary)",
+					editorActiveTabIndicatorTopColor: "none",
+					editorTabBarBorderBottomColor: "var(--codeblock-topbar-bg)",
+					terminalTitlebarBorderBottomColor: "none",
+				},
+				textMarkers: {
+					delHue: 0,
+					insHue: 180,
+					markHue: 250,
+				},
+			},
+			frames: {
+				showCopyToClipboardButton: false,
+			},
+		}),
+		svelte(),
+		sitemap({
+			filter: (page) => {
+				// 根据页面开关配置过滤sitemap
+				const url = new URL(page);
+				const pathname = url.pathname;
+
+				// 检查各个页面是否启用
+				if (pathname === '/anime/' && !siteConfig.pages.anime) {
+					return false;
+				}
+				if (pathname === '/projects/' && !siteConfig.pages.projects) {
+					return false;
+				}
+				if (pathname === '/timeline/' && !siteConfig.pages.timeline) {
+					return false;
+				}
+				if (pathname === '/skills/' && !siteConfig.pages.skills) {
+					return false;
+				}
+
+				return true;
+			},
+		}),
+    mdx()
+	],
+	markdown: {
+		remarkPlugins: [
+			remarkMath,
+			remarkReadingTime,
+			remarkExcerpt,
+			remarkGithubAdmonitionsToDirectives,
+			remarkDirective,
+			remarkSectionize,
+			parseDirectiveNode,
+			remarkMermaid,
+		],
+		rehypePlugins: [
+			rehypeKatex,
+			rehypeSlug,
+			rehypeMermaid,
+			[
+				rehypeComponents,
+				{
+					components: {
+						github: GithubCardComponent,
+						note: (x, y) => AdmonitionComponent(x, y, "note"),
+						tip: (x, y) => AdmonitionComponent(x, y, "tip"),
+						important: (x, y) => AdmonitionComponent(x, y, "important"),
+						caution: (x, y) => AdmonitionComponent(x, y, "caution"),
+						warning: (x, y) => AdmonitionComponent(x, y, "warning"),
+					},
+				},
+			],
+			[
+				rehypeAutolinkHeadings,
+				{
+					behavior: "append",
+					properties: {
+						className: ["anchor"],
+					},
+					content: {
+						type: "element",
+						tagName: "span",
+						properties: {
+							className: ["anchor-icon"],
+							"data-pagefind-ignore": true,
+						},
+						children: [
+							{
+								type: "text",
+								value: "#",
+							},
+						],
+					},
+				},
+			],
+		],
+	},
+	vite: {
+		build: {
+			rollupOptions: {
+				onwarn(warning, warn) {
+					// temporarily suppress this warning
+					if (
+						warning.message.includes("is dynamically imported by") &&
+						warning.message.includes("but also statically imported by")
+					) {
+						return;
+					}
+					warn(warning);
+				},
+			},
+		},
+	},
+});

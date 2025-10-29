@@ -1,0 +1,344 @@
+---
+import BackToTop from "@components/control/BackToTop.astro";
+import Footer from "@components/layout/Footer.astro";
+import Navbar from "@components/layout/Navbar.astro";
+import SideBar from "@components/layout/SideBar.astro";
+import SpineModel from "@components/widget/SpineModel.astro";
+import Live2DWidget from "@components/widget/Live2DWidget.astro";
+import type { MarkdownHeading } from "astro";
+import { Icon } from "astro-icon/components";
+import FullscreenWallpaper from "@/components/misc/FullscreenWallpaper.astro";
+import IconifyLoader from "@/components/misc/IconifyLoader.astro";
+import ImageWrapper from "@/components/misc/ImageWrapper.astro";
+import TypewriterText from "@/components/content/TypewriterText.astro";
+//import TOC from "@/components/widget/TOC.astro";
+import FloatingTOC from "@/components/interactive/FloatingTOC.astro";
+import { siteConfig, live2dModelConfig } from "@/config";
+import {
+	BANNER_HEIGHT,
+	BANNER_HEIGHT_EXTEND,
+	MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
+} from "@/constants/constants";
+import { getBackgroundImages, isHomePage } from "@/utils/layout-utils";
+import { getResponsiveSidebarConfig, generateGridClasses, generateSidebarClasses, generateMainContentClasses } from "@/utils/responsive-utils";
+import Layout from "./Layout.astro";
+
+interface Props {
+	title?: string;
+	banner?: string;
+	description?: string;
+	lang?: string;
+	setOGTypeArticle?: boolean;
+	postSlug?: string;
+	headings?: MarkdownHeading[];
+}
+
+const backgroundImages = getBackgroundImages();
+
+const {
+	title,
+	banner,
+	description,
+	lang,
+	setOGTypeArticle,
+	postSlug,
+	headings = [],
+} = Astro.props;
+
+// 检查背景壁纸模式和是否允许切换
+const isBannerMode = siteConfig.backgroundWallpaper.mode === "banner";
+const isOverlayMode = siteConfig.backgroundWallpaper.mode === "overlay";
+const isBackgroundEnabled = siteConfig.backgroundWallpaper.mode !== "none";
+const isWallpaperSwitchable = siteConfig.backgroundWallpaper.switchable ?? true;
+
+// 检查是否启用波浪动画效果
+const wavesConfig = siteConfig.backgroundWallpaper.banner?.waves?.enable;
+const isWavesEnabled = isBannerMode && isBackgroundEnabled && wavesConfig;
+// 处理分设备控制的波浪动画
+const wavesEnabledOnDesktop = typeof wavesConfig === 'object' ? wavesConfig.desktop : wavesConfig;
+const wavesEnabledOnMobile = typeof wavesConfig === 'object' ? wavesConfig.mobile : wavesConfig;
+
+// 获取波浪效果性能设置
+const performanceConfig = siteConfig.backgroundWallpaper.banner?.waves?.performance;
+const waveQuality = performanceConfig?.quality || 'high';
+const hardwareAcceleration = performanceConfig?.hardwareAcceleration ?? true;
+
+// 处理分设备控制的横幅信贷显示
+const creditEnableConfig = siteConfig.backgroundWallpaper.banner?.credit?.enable;
+const creditEnabledOnDesktop = typeof creditEnableConfig === 'object' ? creditEnableConfig.desktop : creditEnableConfig;
+const creditEnabledOnMobile = typeof creditEnableConfig === 'object' ? creditEnableConfig.mobile : creditEnableConfig;
+
+const hasBannerCredit = isBannerMode && isBackgroundEnabled && creditEnableConfig;
+
+// 处理分设备控制的横幅信贷文本和链接
+const creditTextConfig = siteConfig.backgroundWallpaper.banner?.credit?.text;
+const creditTextDesktop = typeof creditTextConfig === 'object' ? creditTextConfig.desktop : creditTextConfig;
+const creditTextMobile = typeof creditTextConfig === 'object' ? creditTextConfig.mobile : creditTextConfig;
+
+const creditUrlConfig = siteConfig.backgroundWallpaper.banner?.credit?.url;
+const creditUrlDesktop = typeof creditUrlConfig === 'object' ? creditUrlConfig.desktop : creditUrlConfig;
+const creditUrlMobile = typeof creditUrlConfig === 'object' ? creditUrlConfig.mobile : creditUrlConfig;
+
+const hasBannerLink = !!(creditUrlDesktop || creditUrlMobile);
+
+// 检查是否为首页
+const isHomePageCheck = isHomePage(Astro.url.pathname);
+
+// 主页横幅文本只在首页且全局开关为 true 时显示，不区分设备
+const homeTextEnable = siteConfig.backgroundWallpaper.banner?.homeText?.enable;
+const showHomeText = isBannerMode && !!homeTextEnable && isHomePageCheck;
+// 手机端非首页不显示banner的CSS类
+const mobileNonHomeBannerClass = !isHomePageCheck ? "mobile-hide-banner" : "";
+
+// 计算主内容区域位置，考虑手机端非首页时banner被隐藏
+const mainPanelTop = isBannerMode && isBackgroundEnabled
+	? `calc(${BANNER_HEIGHT}vh - ${MAIN_PANEL_OVERLAPS_BANNER_HEIGHT}rem)`
+	: "5.5rem";
+const mobileNonHomeMainTop = !isHomePageCheck ? "5.5rem" : mainPanelTop;
+
+// 当banner模式被禁用时，主内容区域应该始终从顶栏下面开始
+const finalMainPanelTop = isBannerMode && isBackgroundEnabled ? mainPanelTop : "5.5rem";
+
+// 获取响应式侧边栏配置
+const sidebarConfig = getResponsiveSidebarConfig();
+const { gridCols } = generateGridClasses(sidebarConfig);
+const sidebarClass = generateSidebarClasses(sidebarConfig);
+const mainContentClass = generateMainContentClasses(sidebarConfig);
+
+// 检查是否应该启用半透明效果
+const shouldEnableTransparency = isOverlayMode && isBackgroundEnabled;
+
+// 为组件添加半透明效果的CSS类
+const transparentClass = shouldEnableTransparency
+	? "wallpaper-transparent"
+	: "";
+---
+
+<Layout title={title} banner={banner} description={description} lang={lang} setOGTypeArticle={setOGTypeArticle} postSlug={postSlug}>
+
+
+
+<!-- 全屏透明覆盖壁纸 - 如果允许切换则始终渲染，否则只渲染当前模式 -->
+{(isWallpaperSwitchable || isOverlayMode) && (
+	<FullscreenWallpaper config={{
+		src: {
+			desktop: typeof backgroundImages.desktop === 'string' ? backgroundImages.desktop : '',
+			mobile: typeof backgroundImages.mobile === 'string' ? backgroundImages.mobile : ''
+		},
+		position: siteConfig.backgroundWallpaper.position,
+		zIndex: siteConfig.backgroundWallpaper.overlay?.zIndex,
+		opacity: siteConfig.backgroundWallpaper.overlay?.opacity,
+		blur: siteConfig.backgroundWallpaper.overlay?.blur,
+	}} 
+	className={isWallpaperSwitchable && !isOverlayMode ? "hidden opacity-0" : undefined} />
+)}
+
+<!-- 全局图标加载器 -->
+<IconifyLoader />
+
+<!-- 为全屏壁纸模式添加body类 -->
+{shouldEnableTransparency && (
+	<script>
+		document.body.classList.add('wallpaper-transparent');
+	</script>
+)}
+
+<!-- Navbar -->
+<slot slot="head" name="head"></slot>
+<div id="top-row" class="z-50 pointer-events-none relative transition-all duration-700 max-w-[var(--page-width)] px-0 md:px-4 mx-auto" class:list={[""]}>
+    <div id="navbar-wrapper" class="pointer-events-auto sticky top-0 transition-all">
+        <Navbar></Navbar>
+    </div>
+</div>
+
+<!-- Banner - 如果允许切换则始终渲染，否则只渲染当前模式 -->
+{(isWallpaperSwitchable || isBannerMode) && (
+<div id="banner-wrapper" class={`absolute z-10 w-full transition duration-700 overflow-hidden ${mobileNonHomeBannerClass}`} style={isWallpaperSwitchable ? `top: -${BANNER_HEIGHT_EXTEND}vh; display: none;` : `top: -${BANNER_HEIGHT_EXTEND}vh`}>
+    <!-- 背景图片显示 -->
+    <div class="relative h-full w-full">
+        <!-- Mobile: use mobile-specific image -->
+        <ImageWrapper 
+            alt="Mobile background image of the blog" 
+            class:list={["block lg:hidden object-cover h-full w-full transition duration-700 opacity-100"]}
+            src={typeof backgroundImages.mobile === 'string' ? backgroundImages.mobile : (typeof backgroundImages.desktop === 'string' ? backgroundImages.desktop : '')} 
+            position={siteConfig.backgroundWallpaper.position}
+        />
+        <!-- Desktop: use desktop-specific image -->
+        <ImageWrapper 
+            id="banner" 
+            alt="Desktop background image of the blog" 
+            class:list={["hidden lg:block object-cover h-full transition duration-700 opacity-100"]}
+            src={typeof backgroundImages.desktop === 'string' ? backgroundImages.desktop : (typeof backgroundImages.mobile === 'string' ? backgroundImages.mobile : '')} 
+            position={siteConfig.backgroundWallpaper.position}
+        />
+    </div>
+    
+    <!-- Home page text overlay - 始终渲染以便切换模式时控制显示 -->
+    {(isWallpaperSwitchable || showHomeText) && homeTextEnable && (
+        <div class={`banner-text-overlay absolute inset-0 z-20 flex items-center justify-center ${!showHomeText ? 'hidden' : ''}`}>
+            <div class="w-4/5 lg:w-3/4 text-center mb-0">
+                <div class="flex flex-col">
+                    {siteConfig.backgroundWallpaper.banner?.homeText?.title && (
+                        <h1 class="banner-title text-6xl lg:text-8xl text-white drop-shadow-lg mb-2 lg:mb-4">
+                            {siteConfig.backgroundWallpaper.banner.homeText.title}
+                        </h1>
+                    )}
+                    {siteConfig.backgroundWallpaper.banner?.homeText?.subtitle && (
+                        <h2 class="banner-subtitle text-xl lg:text-3xl text-white/90 drop-shadow-md">
+                            {siteConfig.backgroundWallpaper.banner.homeText.typewriter?.enable ? (
+                                <TypewriterText 
+                                    text={siteConfig.backgroundWallpaper.banner.homeText.subtitle}
+                                    speed={siteConfig.backgroundWallpaper.banner.homeText.typewriter.speed}
+                                    deleteSpeed={siteConfig.backgroundWallpaper.banner.homeText.typewriter.deleteSpeed}
+                                    pauseTime={siteConfig.backgroundWallpaper.banner.homeText.typewriter.pauseTime}
+                                />
+                            ) : (
+                                Array.isArray(siteConfig.backgroundWallpaper.banner.homeText.subtitle) 
+                                    ? siteConfig.backgroundWallpaper.banner.homeText.subtitle[0] 
+                                    : siteConfig.backgroundWallpaper.banner.homeText.subtitle
+                            )}
+                        </h2>
+                    )}
+                </div>
+            </div>
+        </div>
+    )}
+    
+    <!-- Water waves effect - 始终渲染以便动态切换 -->
+    {(wavesEnabledOnDesktop || wavesEnabledOnMobile) ? (
+    <div class={`waves absolute -bottom-[1px] h-[10vh] max-h-[9.375rem] min-h-[3.125rem] w-full md:h-[15vh] 
+        ${!wavesEnabledOnMobile ? 'hidden' : ''} ${!wavesEnabledOnDesktop ? 'md:hidden' : ''} ${wavesEnabledOnDesktop ? 'md:block' : ''}`} 
+        id="header-waves" 
+        style={`transform: translateZ(0); will-change: fill; ${hardwareAcceleration ? 'transform: translateZ(0);' : ''}`}
+        data-wave-quality={waveQuality}
+        data-hardware-acceleration={hardwareAcceleration}>
+        <svg
+            class="waves"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 20 150 32"
+            preserveAspectRatio="none"
+            shape-rendering={waveQuality === 'low' ? 'optimizeSpeed' : 'auto'}
+            style={`transform: translateZ(0); backface-visibility: hidden; ${hardwareAcceleration ? 'will-change: transform;' : ''}`}
+        >
+            <defs>
+                <path
+                    id="gentle-wave"
+                    d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v48h-352z"
+                >
+                </path>
+            </defs>
+            <g class="parallax" style={`transform: translateZ(0); ${hardwareAcceleration ? 'will-change: transform;' : ''}`}>
+                <use
+                    xlink:href="#gentle-wave"
+                    x="48"
+                    y="0"
+                    class={`opacity-25 fill-[var(--page-bg)] ${waveQuality === 'low' ? 'wave-low-quality' : ''}`}
+                    style={`animation-delay: -2s; animation-duration: ${waveQuality === 'low' ? '10s' : waveQuality === 'medium' ? '8s' : '7s'}; animation-name: ${waveQuality === 'low' ? 'wave-slow' : waveQuality === 'medium' ? 'wave' : 'wave'}; ${hardwareAcceleration ? 'will-change: transform;' : ''}`}
+                ></use>
+                <use
+                    xlink:href="#gentle-wave"
+                    x="48"
+                    y="3"
+                    class={`opacity-50 fill-[var(--page-bg)] ${waveQuality === 'low' ? 'wave-low-quality' : ''}`}
+                    style={`animation-delay: -3s; animation-duration: ${waveQuality === 'low' ? '15s' : waveQuality === 'medium' ? '12s' : '10s'}; animation-name: ${waveQuality === 'low' ? 'wave-slow' : waveQuality === 'medium' ? 'wave' : 'wave'}; ${hardwareAcceleration ? 'will-change: transform;' : ''}`}
+                ></use>
+                <use
+                    xlink:href="#gentle-wave"
+                    x="48"
+                    y="5"
+                    class={`opacity-75 fill-[var(--page-bg)] ${waveQuality === 'low' ? 'wave-low-quality' : ''}`}
+                    style={`animation-delay: -4s; animation-duration: ${waveQuality === 'low' ? '20s' : waveQuality === 'medium' ? '16s' : '13s'}; animation-name: ${waveQuality === 'low' ? 'wave-slow' : waveQuality === 'medium' ? 'wave' : 'wave'}; ${hardwareAcceleration ? 'will-change: transform;' : ''}`}
+                ></use>
+                <use
+                    xlink:href="#gentle-wave"
+                    x="48"
+                    y="7"
+                    class={`fill-[var(--page-bg)] ${waveQuality === 'low' ? 'wave-low-quality' : ''}`}
+                    style={`animation-delay: -5s; animation-duration: ${waveQuality === 'low' ? '30s' : waveQuality === 'medium' ? '25s' : '20s'}; animation-name: ${waveQuality === 'low' ? 'wave-slow' : waveQuality === 'medium' ? 'wave' : 'wave'}; ${hardwareAcceleration ? 'will-change: transform;' : ''}`}
+                ></use>
+            </g>
+        </svg>
+    </div>
+    ) : null}
+</div>
+)}
+
+<!-- Main content -->
+<div class={`absolute w-full z-30 pointer-events-none ${mobileNonHomeBannerClass ? 'mobile-main-no-banner' : ''} ${!(isBannerMode && isBackgroundEnabled) ? 'no-banner-layout' : ''} ${transparentClass}`} style={`top: ${finalMainPanelTop}`}>
+    <!-- The pointer-events-none here prevent blocking the click event of the TOC -->
+    <div class="relative max-w-[var(--page-width)] mx-auto pointer-events-auto">
+        <div id="main-grid" class={`transition duration-700 w-full left-0 right-0 grid ${gridCols} grid-rows-[auto_1fr_auto] lg:grid-rows-[auto] mx-auto gap-4 px-2 md:px-4 ${!sidebarConfig.mobileShowSidebar ? 'mobile-no-sidebar' : ''}`}
+        >
+            <!-- Background image credit - Desktop -->
+            {hasBannerCredit && creditEnabledOnDesktop && <a 
+                href={creditUrlDesktop || "#"} 
+                id="banner-credit-desktop" 
+                target={creditUrlDesktop ? "_blank" : "_self"}
+                rel={creditUrlDesktop ? "noopener" : ""}
+                aria-label="Visit image source"
+                class:list={[
+                    "group onload-animation transition-all absolute justify-center items-center rounded-full " +
+                    "px-3 right-4 -top-[3.25rem] bg-black/60 hover:bg-black/70 h-9 hidden md:flex", 
+                    {"hover:pr-9 active:bg-black/80": creditUrlDesktop}
+                ]}
+            >
+                <Icon class="text-white/75 text-[1.25rem] mr-1" name="material-symbols:copyright-outline-rounded" ></Icon>
+                <div class="text-white/75 text-xs">{creditTextDesktop}</div>
+                {creditUrlDesktop && <Icon class:list={["transition absolute text-[oklch(0.75_0.14_var(--hue))] right-4 text-[0.75rem] opacity-0 group-hover:opacity-100"]}
+                      name="fa6-solid:arrow-up-right-from-square">
+                </Icon>}
+            </a>}
+
+            <!-- Background image credit - Mobile -->
+            {hasBannerCredit && creditEnabledOnMobile && <a 
+                href={creditUrlMobile || "#"} 
+                id="banner-credit-mobile" 
+                target={creditUrlMobile ? "_blank" : "_self"}
+                rel={creditUrlMobile ? "noopener" : ""}
+                aria-label="Visit image source"
+                class:list={[
+                    "group onload-animation transition-all absolute justify-center items-center rounded-full " +
+                    "px-3 right-4 -top-[3.25rem] bg-black/60 hover:bg-black/70 h-9 flex md:hidden", 
+                    {"hover:pr-9 active:bg-black/80": creditUrlMobile}
+                ]}
+            >
+                <Icon class="text-white/75 text-[1.25rem] mr-1" name="material-symbols:copyright-outline-rounded" ></Icon>
+                <div class="text-white/75 text-xs">{creditTextMobile}</div>
+                {creditUrlMobile && <Icon class:list={["transition absolute text-[oklch(0.75_0.14_var(--hue))] right-4 text-[0.75rem] opacity-0 group-hover:opacity-100"]}
+                      name="fa6-solid:arrow-up-right-from-square">
+                </Icon>}
+            </a>}
+
+
+            {(sidebarConfig.mobileShowSidebar || sidebarConfig.tabletShowSidebar || sidebarConfig.desktopShowSidebar) && <SideBar class={`${sidebarClass} ${transparentClass}`} headings={headings}></SideBar>}
+
+            <main id="swup-container" class={`${mainContentClass} transition-main`}>
+                <div id="content-wrapper" class="onload-animation transition-leaving">
+                    <!-- the overflow-hidden here prevent long text break the layout-->
+                    <!-- make id different from windows.swup global property -->
+                    <slot></slot>
+                    <div class="footer col-span-2 onload-animation hidden lg:block">
+                        <Footer></Footer>
+                    </div>
+                </div>
+            </main>
+
+            <div class="footer col-span-2 onload-animation block lg:hidden">
+                <Footer></Footer>
+            </div>
+        </div>
+
+        <BackToTop></BackToTop>
+        <SpineModel></SpineModel>
+        {live2dModelConfig.enable && <Live2DWidget config={live2dModelConfig} />}
+    </div>
+</div>
+
+<!-- 悬浮TOC组件 -->
+{siteConfig.toc.enable && <FloatingTOC headings={headings}></FloatingTOC>}
+
+<!-- #toc needs to exist for Swup to work normally -->
+{!siteConfig.toc.enable && <div id="toc"></div>}
+</Layout>
+
