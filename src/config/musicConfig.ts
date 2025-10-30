@@ -6,7 +6,7 @@ export const musicPlayerConfig: MusicPlayerConfig = {
   enable: true, // 启用音乐播放器功能
 
   // 播放器模式配置
-  mode: "local", // 播放器模式："local" 本地音乐，"meting" 在线音乐
+  mode: "meting", // 播放器模式："local" 本地音乐，"meting" 在线音乐
 
   // Meting API 配置
   meting: {
@@ -16,7 +16,7 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 
     // 歌单配置
     playlist: {
-      id: "8814137515", // 歌单ID
+      id: "902470195", // 歌单ID
       server: "netease", // 音乐平台：netease=网易云音乐, tencent=QQ音乐, kugou=酷狗音乐, xiami=虾米音乐, baidu=百度音乐
       type: "playlist", // 类型：playlist=歌单, album=专辑, song=单曲
     },

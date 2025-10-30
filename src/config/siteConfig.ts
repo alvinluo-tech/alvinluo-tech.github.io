@@ -6,10 +6,10 @@ import { fontConfig } from "./fontConfig";
 const SITE_LANG = "zh_CN"; 
 
 export const siteConfig: SiteConfig = {
-  title: "Firefly",
+  title: "Alvin's blog",
   subtitle: "Demo site",
   description:
-    "Firefly 是一款基于 Astro 框架开发的清新美观且现代化个人博客主题，专为技术爱好者和内容创作者设计。该主题融合了现代 Web 技术栈，提供了丰富的功能模块和高度可定制的界面，让您能够轻松打造出专业且美观的个人博客网站。",
+    "Alvin's blog 是一款基于 Astro 框架开发的清新美观且现代化个人博客，专为技术爱好者和内容创作者设计。",
   keywords: [
     "Firefly",
     "Fuwari",
@@ -47,7 +47,7 @@ export const siteConfig: SiteConfig = {
     value: "/assets/images/LiuYingPure3.svg",
     alt: "🍀",
   },
-  navbarTitle: "Firefly", // 导航栏标题，可以设置为与 title 不同的值，如果不设置则使用 title
+  navbarTitle: "Alvin's blog", // 导航栏标题，可以设置为与 title 不同的值，如果不设置则使用 title
 
   
   // 追番配置
@@ -63,7 +63,7 @@ export const siteConfig: SiteConfig = {
 
   // 页面开关配置 - 控制特定页面的访问权限，设为false会返回404
   pages: {
-    anime: true, // 追番页面开关，
+    anime: false, // 追番页面开关，
   },
 
   // 文章列表布局配置
@@ -105,15 +105,17 @@ export const siteConfig: SiteConfig = {
         // 主页显示自定义文本（全局开关）
         enable: true,
         // 主页横幅主标题
-        title: "Lovely firefly!",
+        title: "Writing Code, Living Life！",
         // 主页横幅副标题
         subtitle: [
-          "In Reddened Chrysalis, I Once Rest",
-          "From Shattered Sky, I Free Fall",
-          "Amidst Silenced Stars, I Deep Sleep",
-          "Upon Lighted Fyrefly, I Soon Gaze",
-          "From Undreamt Night, I Thence Shine",
-          "In Finalized Morrow, I Full Bloom",
+          "Sometimes I debug, sometimes I daydream.",
+          "Coffee fuels my code — and my late-night thoughts.",
+          "Freedom is typing without deadlines.",
+          "Learning to build, and to breathe.",
+          "Every bug tells a story, every fix feels like hope.",
+          "Between commits and sunsets, I find balance.",
+          "Code by day, stargaze by night.",
+          "I’m not chasing perfection — just progress.",
         ],
         typewriter: {
           enable: true, // 启用副标题打字机效果
@@ -124,7 +126,7 @@ export const siteConfig: SiteConfig = {
       },
       credit: {
         enable: {
-          desktop: true, // 桌面端显示横幅图片来源文本
+          desktop: false, // 桌面端显示横幅图片来源文本
           mobile: false, // 移动端显示横幅图片来源文本
         },
         text: {

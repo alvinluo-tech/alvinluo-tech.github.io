@@ -32,7 +32,8 @@ export const spineModelConfig: SpineModelConfig = {
       "emoji_6",
     ], // 点击时随机播放的动画列表
     clickMessages: [
-      "你好呀！我是流萤~",
+      "你好呀！我是Alvin~",
+      "hello, i'm Alvin!",
       "今天也要加油哦！✨",
       "想要一起去看星空吗？🌟",
       "记得要好好休息呢~",
