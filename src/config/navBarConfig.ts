@@ -25,7 +25,27 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
         url: "https://github.com/alvinluo-tech",
         external: true,
         icon: "fa6-brands:github",
+      },
+        {
+      name: "Instagram",
+      url: "https://www.instagram.com/louyaosheng16",
+      icon: "instagram",
+      external: true,
+    },
+       {
+        name: "Redbook",
+        url: "https://www.xiaohongshu.com/user/profile/5fa793ed00000000010038a3",
+        external: true,
+        icon: "redbook",
+      },
+      {
+        name: "Tiktok",
+        url: "https://www.tiktok.com/@alvinluo86",
+        external: true,
+        icon: "tiktok",
       }
+      
+      
     ],
   });
 

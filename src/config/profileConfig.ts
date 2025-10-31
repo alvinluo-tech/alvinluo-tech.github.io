@@ -13,12 +13,22 @@ export const profileConfig: ProfileConfig = {
       {
       name: "Email",
       icon: "fa6-solid:envelope",
-      url: "luoyaosheng123@gmail.com",
+      url: "mailto:luoyaosheng123@gmail.com",
     },
     {
-      name: "LinkedIn",
-      icon: "fa6-brands:linkedin",
-      url: "https://www.linkedin.com/in/yaoshengluo/",
+      name: "Instagram",
+      icon: "instagram",
+      url: "https://www.instagram.com/louyaosheng16",
     },
+    {
+      name: "Xiaohongshu",
+      icon: "redbook",
+      url: "https://www.xiaohongshu.com/user/profile/5fa793ed00000000010038a3",
+    },
+      {
+        name: "Tiktok",
+        url: "https://www.tiktok.com/@alvinluo86",
+        icon: "tiktok",
+      }
   ],
 };
