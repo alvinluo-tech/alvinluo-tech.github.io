@@ -3,7 +3,7 @@ title: Assignment Inspiration
 published: 2025-10-29
 updated: 2025-10-30
 pinned: true
-img: ''
+imgge: ''
 description: "This document summarizes a classroom assignment design, outlining a Titanic-themed time-travel escape with four data-driven challenges that teach analysis, reasoning, and problem-solving."
 tags: ["course assignment", "markdown","assignment indication"]
 category: course assignment
