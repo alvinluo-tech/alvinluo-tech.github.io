@@ -36,7 +36,7 @@ const postUrl = sourceLink || decodeURIComponent(Astro.url.toString());
   </a>
   <div class="flex gap-6 mt-2">
     <div>
-      <div class="transition text-black/30 dark:text-white/30 text-sm">
+      <div class="transition text-black/30 dark:text-white/30 text-sm i18n-label" data-i18n-key={I18nKey.author}>
         {i18n(I18nKey.author)}
       </div>
       <div class="transition text-black/75 dark:text-white/75 line-clamp-2">
@@ -44,7 +44,7 @@ const postUrl = sourceLink || decodeURIComponent(Astro.url.toString());
       </div>
     </div>
     <div>
-      <div class="transition text-black/30 dark:text-white/30 text-sm">
+      <div class="transition text-black/30 dark:text-white/30 text-sm i18n-label" data-i18n-key={I18nKey.publishedAt}>
         {i18n(I18nKey.publishedAt)}
       </div>
       <div class="transition text-black/75 dark:text-white/75 line-clamp-2">
@@ -52,7 +52,7 @@ const postUrl = sourceLink || decodeURIComponent(Astro.url.toString());
       </div>
     </div>
     <div>
-      <div class="transition text-black/30 dark:text-white/30 text-sm">
+      <div class="transition text-black/30 dark:text-white/30 text-sm i18n-label" data-i18n-key={I18nKey.license}>
         {i18n(I18nKey.license)}
       </div>
       <a

@@ -7,6 +7,7 @@ export const ja: Translation = {
   [Key.archive]: "アーカイブ",
   [Key.search]: "検索",
   [Key.other]: "その他",
+  [Key.links]: "リンク",
 
   [Key.tags]: "タグ",
   [Key.categories]: "カテゴリ",
@@ -63,6 +64,32 @@ export const ja: Translation = {
   [Key.animeEmpty]: "アニメデータなし",
   [Key.animeEmptyBangumi]:
     "Bangumiの設定またはネットワーク接続を確認してください",
+
+  // アニメのステータス
+  [Key.animeStatusAll]: "すべて",
+  [Key.animeStatusWish]: "見たい",
+  [Key.animeStatusDone]: "見た",
+  [Key.animeStatusDoing]: "視聴中",
+  [Key.animeStatusOnhold]: "保留",
+  [Key.animeStatusDropped]: "中止",
+
+  // アニメページのテキスト
+  [Key.animeLoading]: "アニメデータを読み込み中…",
+  [Key.animeLoadingDescription]: "Bangumi からコレクションを取得しています。しばらくお待ちください",
+  [Key.animeError]: "データ読み込みに失敗しました",
+  [Key.animeErrorDescription]: "Bangumi API に接続できません。ネットワーク接続を確認するか、後で再試行してください",
+  [Key.animeRetry]: "再試行",
+  [Key.animeEmptyData]: "データなし",
+  [Key.animeEmptyDescription]: "このカテゴリにアニメは見つかりませんでした",
+  [Key.animeEmptySuggestion]: "他のカテゴリに切り替えてみてください",
+  [Key.animeConfigDescription]: "src/config/siteConfig.ts に Bangumi のユーザーIDを設定してください",
+  [Key.animeRefreshNote]: "いくつかの制限により、アニメデータを読み込むにはページを更新する必要がある場合があります。現在、良い解決策はありません",
+
+  // アニメ情報
+  [Key.animeEpisodes]: "話数",
+  [Key.animeRank]: "ランキング",
+  [Key.animeUnknown]: "不明",
+  [Key.animeLoadFailed]: "読み込み失敗",
 
   // ページネーション
   [Key.paginationFirst]: "最初",

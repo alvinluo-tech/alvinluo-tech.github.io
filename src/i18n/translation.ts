@@ -1,4 +1,4 @@
-import { siteConfig } from "../config";
+import { siteConfig } from "@/config/siteConfig";
 import type I18nKey from "./i18nKey";
 import { en } from "./languages/en";
 import { ja } from "./languages/ja";
@@ -30,6 +30,32 @@ export function getTranslation(lang: string): Translation {
 }
 
 export function i18n(key: I18nKey): string {
-  const lang = siteConfig.lang || "en";
+  const lang = getCurrentLang();
   return getTranslation(lang)[key];
+}
+
+/**
+ * 获取当前语言，优先使用本地存储（运行时用户选择），否则回退到站点配置
+ */
+export function getCurrentLang(): string {
+  try {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("site-lang");
+      if (saved && typeof saved === "string") {
+        // 规范化
+        const s = saved.toLowerCase();
+        if (s.startsWith("en")) return "en";
+        if (s === "zh_cn" || s === "zh-cn" || s === "zh_hans") return "zh_CN";
+        if (s === "zh_tw" || s === "zh-tw" || s === "zh_hant") return "zh_TW";
+        if (s.startsWith("ja")) return "ja";
+        if (s.startsWith("ru")) return "ru";
+      }
+      // 若未保存，则尝试从 <html lang> 猜测
+      const htmlLang = (document.documentElement.getAttribute("lang") || "").toLowerCase();
+      if (htmlLang.startsWith("zh")) return "zh_CN";
+      if (htmlLang.startsWith("ja")) return "ja";
+      if (htmlLang.startsWith("ru")) return "ru";
+    }
+  } catch {}
+  return siteConfig.lang || "en";
 }

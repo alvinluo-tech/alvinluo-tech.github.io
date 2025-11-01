@@ -85,7 +85,13 @@ const {
         class="link-lg transition text-50 text-sm font-medium
                             hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"
       >
-        {category || i18n(I18nKey.uncategorized)}
+        {category ? (
+          category
+        ) : (
+          <span class="i18n-label" data-i18n-key={I18nKey.uncategorized}>
+            {i18n(I18nKey.uncategorized)}
+          </span>
+        )}
       </a>
     </div>
   </div>
@@ -104,7 +110,11 @@ const {
            </div>
            <div class="text-50 text-sm font-medium">
              {words}
-             {" " + i18n(words === 1 ? I18nKey.wordCount : I18nKey.wordsCount)}
+              <span
+                class="i18n-label"
+                data-i18n-key={words === 1 ? I18nKey.wordCount : I18nKey.wordsCount}
+                >{" " + i18n(words === 1 ? I18nKey.wordCount : I18nKey.wordsCount)}</span
+              >
            </div>
          </div>
          
@@ -142,7 +152,11 @@ const {
                {tag.trim()}
              </a>
            ))}
-           {!(tags && tags.length > 0) && <div class="transition text-50 text-sm font-medium">{i18n(I18nKey.noTags)}</div>}
+           {!(tags && tags.length > 0) && (
+             <div class="transition text-50 text-sm font-medium i18n-label" data-i18n-key={I18nKey.noTags}>
+               {i18n(I18nKey.noTags)}
+             </div>
+           )}
          </div>
        </div>
      )
@@ -161,7 +175,7 @@ const {
               class="text-xl"
             />
           </div>
-          <span class="text-50 text-sm font-medium mr-1">
+          <span class="text-50 text-sm font-medium mr-1 i18n-label" data-i18n-key={I18nKey.pageViews}>
             {i18n(I18nKey.pageViews)}
           </span>
           <span class="text-50 text-sm font-medium" id="twikoo_visitors">

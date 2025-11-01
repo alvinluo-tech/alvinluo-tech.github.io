@@ -7,6 +7,7 @@ export const ru: Translation = {
   [Key.archive]: "Архив",
   [Key.search]: "Поиск",
   [Key.other]: "Прочее",
+  [Key.links]: "Ссылки",
 
   [Key.tags]: "Теги",
   [Key.categories]: "Категории",

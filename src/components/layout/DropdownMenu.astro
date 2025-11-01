@@ -32,10 +32,11 @@ const hasChildren = processedLink.children && processedLink.children.length > 0;
 			aria-expanded="false"
 			aria-haspopup="true"
 			data-dropdown-trigger
+			data-link-url={processedLink.url}
 		>
 			<div class="flex items-center">
 				{processedLink.icon && <Icon name={processedLink.icon} class="text-[1.1rem] mr-2" />}
-				{processedLink.name}
+				<span class="dropdown-link-label">{processedLink.name}</span>
 				<Icon name="material-symbols:keyboard-arrow-down-rounded" class="text-[1.25rem] transition-transform duration-200 dropdown-arrow ml-1" />
 			</div>
 		</button>
@@ -47,10 +48,11 @@ const hasChildren = processedLink.children && processedLink.children.length > 0;
 						target={child.external ? "_blank" : null}
 						class="dropdown-item"
 						aria-label={child.name}
+						data-link-url={child.url}
 					>
 						<div class="flex items-center">
 							{child.icon && <Icon name={child.icon} class="text-[1rem] mr-2" />}
-							<span>{child.name}</span>
+							<span class="dropdown-link-label">{child.name}</span>
 						</div>
 						{child.external && (
 							<Icon name="fa6-solid:arrow-up-right-from-square" class="text-[0.75rem] text-black/25 dark:text-white/25" />
@@ -65,10 +67,11 @@ const hasChildren = processedLink.children && processedLink.children.length > 0;
 			href={processedLink.external ? processedLink.url : url(processedLink.url)} 
 			target={processedLink.external ? "_blank" : null}
 			class="btn-plain scale-animation rounded-lg h-11 font-bold px-5 active:scale-95"
+			data-link-url={processedLink.url}
 		>
 			<div class="flex items-center">
 				{processedLink.icon && <Icon name={processedLink.icon} class="text-[1.1rem] mr-2" />}
-				{processedLink.name}
+				<span class="dropdown-link-label">{processedLink.name}</span>
 				{processedLink.external && <Icon name="fa6-solid:arrow-up-right-from-square" class="text-[0.875rem] transition -translate-y-[1px] ml-1 text-black/[0.2] dark:text-white/[0.2]" />}
 			</div>
 		</a>
@@ -99,7 +102,7 @@ const hasChildren = processedLink.children && processedLink.children.length > 0;
 	}
 
 	.dropdown-item {
-		@apply flex items-center justify-between px-4 py-2.5 text-black/75 dark:text-white/75 hover:text-[var(--primary)] hover:bg-[var(--btn-plain-bg-hover)] transition-colors duration-150 font-medium;
+		@apply flex items-center justify-between px-4 py-2.5 text-black/90 dark:text-white/90 hover:text-[var(--primary)] hover:bg-[var(--btn-plain-bg-hover)] transition-colors duration-150 font-medium;
 	}
 
 	.dropdown-item:first-child {

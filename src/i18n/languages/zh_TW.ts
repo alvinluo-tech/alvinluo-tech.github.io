@@ -7,6 +7,7 @@ export const zh_TW: Translation = {
   [Key.archive]: "歸檔",
   [Key.search]: "搜尋",
   [Key.other]: "其他",
+  [Key.links]: "連結",
 
   [Key.tags]: "標籤",
   [Key.categories]: "分類",
@@ -59,9 +60,35 @@ export const zh_TW: Translation = {
   [Key.animeStatusCompleted]: "已追完",
   [Key.animeStatusPlanned]: "計劃中",
   [Key.animeYear]: "年份",
+  [Key.animeEpisodes]: "集數",
   [Key.animeStudio]: "製作",
   [Key.animeEmpty]: "暫無追番數據",
   [Key.animeEmptyBangumi]: "請檢查 Bangumi 配置或網絡連接",
+
+  // 動漫狀態
+  [Key.animeStatusAll]: "全部",
+  [Key.animeStatusWish]: "想看",
+  [Key.animeStatusDone]: "看過",
+  [Key.animeStatusDoing]: "在看",
+  [Key.animeStatusOnhold]: "擱置",
+  [Key.animeStatusDropped]: "拋棄",
+
+  // 動漫頁面文本
+  [Key.animeLoading]: "正在載入追番數據...",
+  [Key.animeLoadingDescription]: "請稍候，正在從 Bangumi 獲取您的收藏資訊",
+  [Key.animeError]: "數據載入失敗",
+  [Key.animeErrorDescription]: "無法連接到 Bangumi API，請檢查網絡連接或稍後重試",
+  [Key.animeRetry]: "重新載入",
+  [Key.animeEmptyData]: "暫無數據",
+  [Key.animeEmptyDescription]: "該分類下暫時沒有找到相關的動漫作品",
+  [Key.animeEmptySuggestion]: "試試切換到其他分類查看",
+  [Key.animeConfigDescription]: "請在 src/config/siteConfig.ts 檔案中設定你的 Bangumi 使用者ID",
+  [Key.animeRefreshNote]: "由於一些限制，可能需要重新整理一次頁面才會載入追番數據，目前尚無更好的解決方法",
+
+  // 動漫資訊
+  [Key.animeRank]: "排名",
+  [Key.animeUnknown]: "未知",
+  [Key.animeLoadFailed]: "載入失敗",
 
   // 分頁
   [Key.paginationFirst]: "首頁",

@@ -5,6 +5,6 @@ export const commentConfig: CommentConfig = {
   enableVisitorCount: true, // 启用文章访问量统计功能。当设置为 false 时，文章访问量统计将不会显示。需要enable和enableVisitorCount都为true时才启用。
   twikoo: {
     envId: "https://twikoo.vercel.app",
-    lang: "zh-CN", // 设置 Twikoo 评论系统语言
+    lang: "zh-CN", // 默认语言，运行时会根据用户选择动态切换
   },
 };

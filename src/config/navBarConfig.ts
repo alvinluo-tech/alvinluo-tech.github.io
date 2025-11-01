@@ -1,6 +1,23 @@
 import type { NavBarConfig, NavBarLink } from "../types/config";
 import { LinkPreset } from "../types/config";
 import { siteConfig } from "./siteConfig";
+// Avoid importing i18n here to prevent circular deps. Compute simple defaults based on site language.
+
+function tLinks(): string {
+  const lang = (siteConfig.lang || 'en').toLowerCase();
+  if (lang.startsWith('zh')) return '链接';
+  if (lang.startsWith('ja')) return 'リンク';
+  if (lang.startsWith('ru')) return 'Ссылки';
+  return 'Links';
+}
+
+function tAbout(): string {
+  const lang = (siteConfig.lang || 'en').toLowerCase();
+  if (lang.startsWith('zh')) return '关于我';
+  if (lang.startsWith('ja')) return 'について';
+  if (lang.startsWith('ru')) return 'О нас';
+  return 'About';
+}
 
 // 根据页面开关动态生成导航栏配置
 const getDynamicNavBarConfig = (): NavBarConfig => {
@@ -16,7 +33,7 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 
   // 支持自定义导航栏链接,并且支持多级菜单
   links.push({
-    name: "链接",
+    name: tLinks(),
     url: "/links/",
     icon: "material-symbols:link",
     children: [
@@ -52,7 +69,7 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
   // links.push(LinkPreset.Friends);
 
   links.push({
-    name: "关于",
+    name: tAbout(),
     url: "/content/",
     icon: "material-symbols:info",
     children: [LinkPreset.About],

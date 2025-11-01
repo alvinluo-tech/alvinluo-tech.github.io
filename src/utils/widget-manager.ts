@@ -28,7 +28,7 @@ export class WidgetManager {
   private enabledComponents: WidgetComponentConfig[];
 
   constructor(config: SidebarLayoutConfig = sidebarLayoutConfig) {
-    this.config = config;
+    this.config = config || sidebarLayoutConfig;
     this.enabledComponents = this.getEnabledComponents();
   }
 
@@ -43,6 +43,10 @@ export class WidgetManager {
    * 获取启用的组件列表
    */
   private getEnabledComponents(): WidgetComponentConfig[] {
+    if (!this.config || !this.config.components) {
+      console.warn('[WidgetManager] Config or components is undefined, returning empty array');
+      return [];
+    }
     return this.config.components
       .filter((component) => component.enable)
       .sort((a, b) => a.order - b.order);
@@ -254,9 +258,11 @@ export const widgetManager = new WidgetManager();
 export function getComponentConfig(
   componentType: WidgetComponentType
 ): WidgetComponentConfig | undefined {
-  return widgetManager
-    .getConfig()
-    .components.find((c) => c.type === componentType);
+  const config = widgetManager.getConfig();
+  if (!config || !config.components) {
+    return undefined;
+  }
+  return config.components.find((c) => c.type === componentType);
 }
 
 /**

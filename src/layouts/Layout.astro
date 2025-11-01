@@ -6,6 +6,11 @@ import SakuraEffect from "@components/effects/SakuraEffect.astro";
 import FancyboxManager from "@components/effects/FancyboxManager.astro";
 
 import { profileConfig, siteConfig } from "@/config";
+import { en } from "@/i18n/languages/en";
+import { zh_CN } from "@/i18n/languages/zh_CN";
+import { zh_TW } from "@/i18n/languages/zh_TW";
+import { ja } from "@/i18n/languages/ja";
+import { ru } from "@/i18n/languages/ru";
 import {
 	BANNER_HEIGHT,
 	BANNER_HEIGHT_EXTEND,
@@ -290,6 +295,30 @@ const bannerOffset = `${BANNER_HEIGHT_EXTEND / 2}vh`;
 				});
 			})();
 		</script>
+		
+		<!-- Pre-load language setting for fast, seamless language updates -->
+		<script is:inline>
+		(function(){
+			function normalize(code){
+				const s = (code || '').toLowerCase();
+				if (s.startsWith('en')) return 'en';
+				if (s === 'zh_cn' || s === 'zh-cn' || s === 'zh_hans') return 'zh_CN';
+				if (s === 'zh_tw' || s === 'zh-tw' || s === 'zh_hant') return 'zh_TW';
+				if (s.startsWith('ja')) return 'ja';
+				if (s.startsWith('ru')) return 'ru';
+				return null;
+			}
+			
+			try {
+				const saved = localStorage.getItem('site-lang');
+				const lang = normalize(saved);
+				if (lang) {
+					document.documentElement.setAttribute('lang', lang.replace('_', '-'));
+				}
+			} catch {}
+		})();
+		</script>
+		
 		<style define:vars={{
 			configHue,
 			'page-width': `${PAGE_WIDTH}rem`,
@@ -334,6 +363,157 @@ const bannerOffset = `${BANNER_HEIGHT_EXTEND / 2}vh`;
 		
 		<!-- Fancybox Manager -->
 		<FancyboxManager />
+
+		<!-- Language Manager: keep navbar, sidebar, 404, and meta labels in sync with selected language -->
+		<!-- Inject translation maps from server-side -->
+		<script is:inline define:vars={{ translations: { en, zh_CN, zh_TW, ja, ru } }}>
+		(function(){
+		  if (window.__langManagerInit) return; // guard against double init
+		  window.__langManagerInit = true;
+
+		  function normalize(code){
+		    const s = (code || '').toLowerCase();
+		    if (s.startsWith('en')) return 'en';
+		    if (s === 'zh_cn' || s === 'zh-cn' || s === 'zh_hans') return 'zh_CN';
+		    if (s === 'zh_tw' || s === 'zh-tw' || s === 'zh_hant') return 'zh_TW';
+		    if (s.startsWith('ja')) return 'ja';
+		    if (s.startsWith('ru')) return 'ru';
+		    const htmlLang = (document.documentElement.getAttribute('lang') || '').toLowerCase();
+		    if (htmlLang.startsWith('zh')) return 'zh_CN';
+		    if (htmlLang.startsWith('ja')) return 'ja';
+		    if (htmlLang.startsWith('ru')) return 'ru';
+		    return 'en';
+		  }
+
+		  // Use translations injected from server-side
+		  const dicts = translations;
+
+		  function getDict(lang){
+		    return dicts[lang] || dicts.en;
+		  }
+
+		  function pathToKey(path){
+		    if (!path) return null;
+		    let p = path;
+		    if (!p.startsWith('/')) p = '/' + p;
+		    if (!p.endsWith('/')) p = p + '/';
+		    switch(p){
+		      case '/': return 'home';
+		      case '/archive/': return 'archive';
+		      case '/anime/': return 'anime';
+		      case '/friends/': return 'friends';
+		      case '/links/': return 'links';
+		      case '/content/':
+		      case '/about/': return 'about';
+		      case '/rss/': return 'rss';
+		      default: return null;
+		    }
+		  }
+
+		  function updateHtmlLang(lang){
+		    document.documentElement.setAttribute('lang', lang.replace('_','-'));
+		  }
+
+					function updateNavLabels(lang){
+		    const dict = getDict(lang);
+		    const nodes = document.querySelectorAll('[data-link-url]');
+		    nodes.forEach((el)=>{
+		      const path = el.getAttribute('data-link-url') || '';
+		      const key = pathToKey(path);
+		      if (!key) return;
+		      const label = dict[key];
+		      if (!label) return;
+		      const span = el.querySelector('.dropdown-link-label');
+		      if (span) span.textContent = label;
+		      if (el.hasAttribute('aria-label')) el.setAttribute('aria-label', label);
+		    });
+		  }
+
+					function updateI18nElements(lang){
+						const dict = getDict(lang);
+						const els = document.querySelectorAll('[data-i18n-key]');
+						els.forEach((el)=>{
+							const key = el.getAttribute('data-i18n-key');
+							if (!key) return;
+							let val = dict[key];
+							if (!val) return;
+							// simple placeholder replacement using data attributes like data-i18n-days
+							Array.from(el.attributes).forEach(attr => {
+								if (attr.name.startsWith('data-i18n-') && attr.name !== 'data-i18n-key'){
+									const token = attr.name.replace('data-i18n-','');
+									val = val.replaceAll(`{${token}}`, attr.value);
+								}
+							});
+							// If there is a .i18n-label child, update it; else update textContent
+							const labelSpan = el.querySelector('.i18n-label');
+							if (labelSpan) {
+								labelSpan.textContent = val;
+							} else {
+								el.textContent = val;
+							}
+							if (el.hasAttribute('aria-label')) el.setAttribute('aria-label', val);
+						});
+					}
+
+		  function init(){
+		    const saved = localStorage.getItem('site-lang');
+		    const lang = normalize(saved);
+		    updateHtmlLang(lang);
+		    
+		    // Function to update all i18n content
+		    const updateAll = () => {
+		      try {
+		        const saved = localStorage.getItem('site-lang');
+		        const lang = normalize(saved);
+		        updateHtmlLang(lang);
+		        updateNavLabels(lang);
+		        updateI18nElements(lang);
+		      } catch {}
+		    };
+		    
+		    // Initial update
+		    updateNavLabels(lang);
+		    updateI18nElements(lang);
+		    
+		    // Listen for language change events
+		    window.addEventListener('site-lang-change', (e)=>{
+							try {
+								const l = normalize(e.detail && e.detail.lang);
+								updateHtmlLang(l);
+								updateNavLabels(l);
+								updateI18nElements(l);
+							} catch (err) {
+								console.error('[Language Manager] Error:', err);
+							}
+		    });
+		    window.addEventListener('storage', (e)=>{
+							if (e.key === 'site-lang'){
+								const l = normalize(e.newValue || '');
+								updateHtmlLang(l);
+								updateNavLabels(l);
+								updateI18nElements(l);
+							}
+		    });
+		    
+		    // Listen for Swup page transitions (event-based API)
+		    document.addEventListener('swup:page-view', updateAll);
+		    
+		    // Also listen via Swup hooks API (for compatibility)
+		    if (window.swup && window.swup.hooks) {
+		      window.swup.hooks.on('page:view', updateAll);
+		    } else {
+		      // If Swup is not ready yet, wait for it
+		      document.addEventListener('swup:enable', () => {
+		        if (window.swup && window.swup.hooks) {
+		          window.swup.hooks.on('page:view', updateAll);
+		        }
+		      });
+		    }
+		  }
+
+		  init();
+		})();
+		</script>
 		
 	</body>
 </html>

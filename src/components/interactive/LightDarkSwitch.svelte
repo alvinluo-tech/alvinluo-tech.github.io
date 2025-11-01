@@ -14,6 +14,11 @@ import { i18n } from "@i18n/translation";
 let mode: LIGHT_DARK_MODE = $state(LIGHT_MODE);
 let displayedMode: LIGHT_DARK_MODE = $state(LIGHT_MODE); // 显示的实际主题（在system模式下会随系统变化）
 
+// 响应式标签 - 当语言切换时自动更新
+let lightModeLabel = $state(i18n(I18nKey.lightMode));
+let darkModeLabel = $state(i18n(I18nKey.darkMode));
+let systemModeLabel = $state(i18n(I18nKey.systemMode));
+
 function switchScheme(newMode: LIGHT_DARK_MODE) {
 	mode = newMode;
 	setTheme(newMode);
@@ -28,6 +33,13 @@ function updateDisplayedMode() {
 	} else {
 		displayedMode = mode;
 	}
+}
+
+// 更新语言标签
+function updateLabels() {
+	lightModeLabel = i18n(I18nKey.lightMode);
+	darkModeLabel = i18n(I18nKey.darkMode);
+	systemModeLabel = i18n(I18nKey.systemMode);
 }
 
 // 使用onMount确保在组件挂载后正确初始化
@@ -88,9 +100,17 @@ onMount(() => {
 	
 	window.addEventListener('theme-change', handleThemeChange);
 	
+	// 监听语言切换事件
+	const handleLangChange = () => {
+		updateLabels();
+	};
+	
+	window.addEventListener('site-lang-change', handleLangChange);
+	
 	// 清理函数
 	return () => {
 		window.removeEventListener('theme-change', handleThemeChange);
+		window.removeEventListener('site-lang-change', handleLangChange);
 	};
 });
 </script>
@@ -111,21 +131,21 @@ onMount(() => {
                     onclick={() => switchScheme(LIGHT_MODE)}
             >
                 <Icon icon="material-symbols:wb-sunny-outline-rounded" class="text-[1.25rem] mr-3"></Icon>
-                {i18n(I18nKey.lightMode)}
+                {lightModeLabel}
             </button>
             <button class="flex transition whitespace-nowrap items-center !justify-start w-full btn-plain scale-animation rounded-lg h-9 px-3 font-medium active:scale-95 mb-0.5"
                     class:current-theme-btn={mode === DARK_MODE}
                     onclick={() => switchScheme(DARK_MODE)}
             >
                 <Icon icon="material-symbols:dark-mode-outline-rounded" class="text-[1.25rem] mr-3"></Icon>
-                {i18n(I18nKey.darkMode)}
+                {darkModeLabel}
             </button>
             <button class="flex transition whitespace-nowrap items-center !justify-start w-full btn-plain scale-animation rounded-lg h-9 px-3 font-medium active:scale-95"
                     class:current-theme-btn={mode === SYSTEM_MODE}
                     onclick={() => switchScheme(SYSTEM_MODE)}
             >
                 <Icon icon="material-symbols:brightness-auto-outline-rounded" class="text-[1.25rem] mr-3"></Icon>
-                {i18n(I18nKey.systemMode)}
+                {systemModeLabel}
             </button>
         </div>
     </div>
