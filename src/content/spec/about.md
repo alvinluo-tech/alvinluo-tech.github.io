@@ -27,7 +27,7 @@ Git · Docker · Maven · Gradle · npm · Yarn · GitHub Actions
 
 ## 🧭 代表项目 / Featured Projects
 
-- 🪶 **[tauri-todolist](https://github.com/alvinluo-tech/tauri-todolist)**  
+- 🪶 **[tauri-FocusTimer](https://github.com/alvinluo-tech/tauri-FocusTimer)**  
   一款基于 **Tauri + React/TypeScript** 的跨平台桌面待办应用，轻量本地存储，原生体验。
 
 - 🧱 **[proxy_pool_manager](https://gitee.com/alvin_GDUT/proxy_pool_manager)**  
