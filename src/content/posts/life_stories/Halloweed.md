@@ -16,9 +16,9 @@ draft: false
 
 ***我的第一篇生活博客来啦***
 
-周四晚（10.30）是我万圣节的唯一狂欢夜。我去参加了学院的 formal，价格还不错，10p，有前菜、主食、甜品。待会儿展示给大家看看；在此之前我得讲讲前期准备（相当于无准备）。
+周四晚（10.30）是我万圣节的唯一狂欢夜。我去参加了学院的 formal，价格还不错，£10，有前菜、主食、甜品。待会儿展示给大家看看；在此之前我得讲讲前期准备（相当于无准备）。
 
-首先，非常感谢紫慧姐的倾情赞助如下：
+首先，非常感谢L姐的倾情赞助如下：
 <div style="display: flex; justify-content: center; margin: 20px 0;">
   <figure style="margin: 0; text-align: center;">
       <img
@@ -34,12 +34,12 @@ draft: false
         "
       />
     <figcaption style="font-size: 14px; color: #777; margin-top: 3px;">
-      紫慧姐的赞助✌
+      L姐的赞助✌
     </figcaption>
   </figure>
 </div>
 
-真是太感谢了！本来都没打算准备啥，因为当天 18:00 才下课，然后 formal 是在 19:30。想着找个地方待着，坐等开饭，但是刚好和紫慧姐往 St John's 走；我在那念叨“好素啊”的感觉，紫慧姐说“要不去我那画点万圣元素”，然后就有了下面的成果。
+真是太感谢了！本来都没打算准备啥，因为当天 18:00 才下课，然后 formal 是在 19:30。想着找个地方待着，坐等开饭，但是刚好和L姐往 St John's 走；我在那念叨“好素啊”的感觉，L姐说“要不去我那画点万圣元素”，然后就有了下面的成果。
 
 <div style="display: flex; justify-content: center; margin: 20px 0;">
   <figure style="margin: 0; text-align: center;">
