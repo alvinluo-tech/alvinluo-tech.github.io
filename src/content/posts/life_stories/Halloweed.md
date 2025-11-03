@@ -1,6 +1,7 @@
 ---
 title: Halloween Night
 published: 2025-11-02
+updated: 2025-11-03
 pinned: true
 image: 'https://pub-996ee35c86674a47bf3eb5e069624f90.r2.dev/formal合照.JPG'
 description: "A cheerful recap of my Halloween night in the UK."
