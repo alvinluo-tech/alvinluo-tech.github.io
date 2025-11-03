@@ -160,7 +160,7 @@ woc，我说：是啊。
 <div style="display: flex; justify-content: center; margin: 20px 0;">
   <figure style="margin: 0; text-align: center;">
       <img
-        src="https://pub-996ee35c86674a47bf3eb5e069624f90.r2.dev/和hxy合照.JPG
+        src="https://pub-996ee35c86674a47bf3eb5e069624f90.r2.dev/和hxy合照2.JPG
         "
         alt="示例图片"
         style="
