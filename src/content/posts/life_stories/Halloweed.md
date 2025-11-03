@@ -2,7 +2,7 @@
 title: Halloween Night
 published: 2025-11-02
 pinned: true
-image: 'https://pub-996ee35c86674a47bf3eb5e069624f90.r2.dev/photobooth合照.JPG'
+image: 'https://pub-996ee35c86674a47bf3eb5e069624f90.r2.dev/formal合照.JPG'
 description: "A cheerful recap of my Halloween night in the UK."
 tags: ["life stories", "halloween", "UK", "Durham", "college formal"]
 category: life stories
@@ -178,7 +178,7 @@ woc，我说：是啊。
   </figure>
 </div>
 
-我还顺便拍了一下当时 formal 时候的氛围，分享给大家看看。
+我还顺便拍了一下当时 *formal* 时候的氛围，分享给大家看看。
 
 <div style="
   display: flex;
@@ -207,8 +207,178 @@ woc，我说：是啊。
 </div>
 
 
-吃完 formal，就去赶下半场的 castle 了。
+散会散会。
 
 
-好困，23:08 了已经，准备洗洗睡了，下次更✌。
-未完成，待续……
+<div style="display: flex; justify-content: center; margin: 20px 0;">
+  <figure style="margin: 0; text-align: center;">
+      <img
+        src="https://pub-996ee35c86674a47bf3eb5e069624f90.r2.dev/formal随手拍的南瓜.JPG
+        "
+        alt="示例图片"
+        style="
+          width: auto;
+          max-width: 100%;
+          max-height: 480px;
+          border-radius: 12px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+          cursor: zoom-in;
+        "
+      />
+    <figcaption style="font-size: 14px; color: #777; margin-top: 3px;">
+    想吃南瓜了…
+    </figcaption>
+  </figure>
+</div>
+
+
+吃完 *formal*，就去赶下半场的 *castle* 了。
+差点还迷路了，第一次去 *castle* (bushi)，
+夜晚的 *catherdral*
+
+
+<div style="display: flex; justify-content: center; margin: 20px 0;">
+  <figure style="margin: 0; text-align: center;">
+      <img
+        src="https://pub-996ee35c86674a47bf3eb5e069624f90.r2.dev/去castle参加活动前的catherdral.JPG
+        "
+        alt="示例图片"
+        style="
+          width: auto;
+          max-width: 100%;
+          max-height: 480px;
+          border-radius: 12px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+          cursor: zoom-in;
+        "
+      />
+    <figcaption style="font-size: 14px; color: #777; margin-top: 3px;">
+    <em>Catherdral</em>
+    </figcaption>
+  </figure>
+</div>
+
+
+
+咱就是说，去到之后有点小失落，因为没啥好玩的，还花了£5，就是说没吃到吃的（队伍太长了，懒得拍），没有去算塔罗牌 (问就是怕听不懂)，Karaoke也没k起来（嗓子哑了），没招了，但是收获合照几张
+trump哥还是挺逗的 哈哈哈哈哈  笑死我了  还有一群小黄人
+<div style="display: flex; justify-content: center; margin: 20px 0;">
+  <figure style="margin: 0; text-align: center;">
+      <img
+        src="https://pub-996ee35c86674a47bf3eb5e069624f90.r2.dev/随拍trump.jpg
+        "
+        alt="示例图片"
+        style="
+          width: auto;
+          max-width: 100%;
+          max-height: 480px;
+          border-radius: 12px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+          cursor: zoom-in;
+        "
+      />
+    <figcaption style="font-size: 14px; color: #777; margin-top: 3px;">
+    随便拍 <em>trump</em>
+    </figcaption>
+  </figure>
+</div>
+
+
+
+
+
+<div style="display: flex; justify-content: center; margin: 20px 0;">
+  <figure style="margin: 0; text-align: center;">
+      <img
+        src="https://pub-996ee35c86674a47bf3eb5e069624f90.r2.dev/我与trump的合照.JPG
+        "
+        alt="示例图片"
+        style="
+          width: auto;
+          max-width: 100%;
+          max-height: 480px;
+          border-radius: 12px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+          cursor: zoom-in;
+        "
+      />
+    <figcaption style="font-size: 14px; color: #777; margin-top: 3px;">
+    和 <em>trump</em> 合照一张✌
+    </figcaption>
+  </figure>
+</div>
+
+
+这群人也是很疯狂，老实排队是不可能的，一直再做 *squat*，自我介绍的话也不知道说了多少遍（嗓子就是这么坏的）
+
+<div style="display: flex; justify-content: center; margin: 20px 0;">
+  <figure style="margin: 0; text-align: center;">
+      <img
+        src="https://pub-996ee35c86674a47bf3eb5e069624f90.r2.dev/castle小黄人合照.JPG
+        "
+        alt="示例图片"
+        style="
+          width: auto;
+          max-width: 100%;
+          max-height: 480px;
+          border-radius: 12px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+          cursor: zoom-in;
+        "
+      />
+    <figcaption style="font-size: 14px; color: #777; margin-top: 3px;">
+    小黄人集合 <em>balababala</em>
+    </figcaption>
+  </figure>
+</div>
+
+
+
+
+<div style="display: flex; justify-content: center; margin: 40px 0;">
+  <figure style="margin: 0; text-align: center;">
+      <img
+        src="https://pub-996ee35c86674a47bf3eb5e069624f90.r2.dev/castle中的help海报.JPG
+        "
+        alt="示例图片"
+        style="
+          width: auto;
+          max-width: 100%;
+          max-height: 480px;
+          border-radius: 12px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+          cursor: zoom-in;
+        "
+      />
+  </figure>
+</div>
+
+
+
+
+<div style="display: flex; justify-content: center; margin: 20px 0;">
+  <figure style="margin: 0; text-align: center;">
+      <img
+        src="https://pub-996ee35c86674a47bf3eb5e069624f90.r2.dev/photobooth合照.JPG
+        "
+        alt="示例图片"
+        style="
+          width: auto;
+          max-width: 100%;
+          max-height: 480px;
+          border-radius: 12px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+          cursor: zoom-in;
+        "
+      />
+    <figcaption style="font-size: 14px; color: #777; margin-top: 3px;">
+    最后的收获
+    </figcaption>
+  </figure>
+</div>
+
+
+*damn*，写完之后也不知道写了什么，*whatever*， 哪有那么多条条框框，按照自己的想法，心情来写就好了，然后也希望自己坚持吧，不要把生活过得太板正了，做自己喜欢的事。好好生活~
+
+hi，alvin luo希望你能继续坚持做自己喜欢的事情哦，写代码，徒步，跑步，健身，阅读，旅游.......
+
