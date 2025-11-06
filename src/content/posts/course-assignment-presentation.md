@@ -12,11 +12,28 @@ draft: false
 
 
 # The Titanic Time-Rift Escape Room
-## A Data Science Adventure Game
 
 ---
 
-## � Live Demo
+## 👥 Team Members
+
+This project was collaboratively developed by:
+
+- **[Alvin（Yaosheng Luo）](https://github.com/alvinluo-tech)**
+- **[Lizzy（Zihui Li）](https://github.com/1399liz)** 
+- **[Bruno](https://github.com/brunogarciac2)** 
+- **[George](https://github.com/ggrainger34)** 
+- **[Thomas](https://github.com/lr044)** 
+
+---
+## 💻 GitHub Repository
+
+::github{repo="alvinluo-tech/advanced-programming-titanic-game"}
+
+*Check out the complete source code, documentation, and technical implementation details.*
+
+
+## 🎮 Live Demo
 
 **[View Game Master Guide (Live Demo)](https://sharp-cloud-uploader-nine.vercel.app/gm_guide.html)**
 
