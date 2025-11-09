@@ -44,6 +44,18 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
         icon: "fa6-brands:github",
       },
         {
+      name: "youtube",
+      icon: "youtube",
+      external: true,
+      url: "https://www.youtube.com/@ItsAlvinLuo",
+    },
+             {
+      name: "bilibili",
+      icon: "bilibili",
+      external: true,
+      url: "https://space.bilibili.com/1506265259",
+    },
+        {
       name: "Instagram",
       url: "https://www.instagram.com/louyaosheng16",
       icon: "instagram",
@@ -55,12 +67,14 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
         external: true,
         icon: "redbook",
       },
-      {
-        name: "Tiktok",
-        url: "https://www.tiktok.com/@alvinluo86",
-        external: true,
-        icon: "tiktok",
-      }
+      // {
+      //   name: "Tiktok",
+      //   url: "https://www.tiktok.com/@alvinluo86",
+      //   external: true,
+      //   icon: "tiktok",
+      // },
+  
+
       
       
     ],

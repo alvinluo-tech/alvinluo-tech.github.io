@@ -15,20 +15,23 @@ export const profileConfig: ProfileConfig = {
       icon: "fa6-solid:envelope",
       url: "mailto:luoyaosheng123@gmail.com",
     },
-    {
-      name: "Instagram",
-      icon: "instagram",
-      url: "https://www.instagram.com/louyaosheng16",
+      {
+      name: "youtube",
+      icon: "youtube",
+     
+      url: "https://www.youtube.com/@ItsAlvinLuo",
     },
+       {
+      name: "bilibili",
+      icon: "bilibili",
+      url: "https://space.bilibili.com/1506265259",
+    },
+
     {
       name: "Xiaohongshu",
       icon: "redbook",
       url: "https://www.xiaohongshu.com/user/profile/5fa793ed00000000010038a3",
     },
-      {
-        name: "Tiktok",
-        url: "https://www.tiktok.com/@alvinluo86",
-        icon: "tiktok",
-      }
+  
   ],
 };
