@@ -58,8 +58,6 @@ Easy Split 的核心功能就是帮你：
    - **密码**（Password）：至少6位字符
 4. 点击"Create account"（创建账号）
 
-![注册表单](https://placeholder.com/800x400?text=注册表单截图)
-
 ### 1.2 验证邮箱
 
 注册成功后，你会看到验证提示：
