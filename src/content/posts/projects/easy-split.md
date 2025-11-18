@@ -1,6 +1,7 @@
 ---
 title: "Easy Split - 智能账单分摊应用"
 published: 2025-11-12
+updated: 2025-11-18
 description: "一个基于 AI 的跨平台账单分摊 Web 应用，支持自动识别收据、智能分配费用、实时同步，让 AA 制变得简单准确。使用教程涵盖从注册到账单管理的完整流程。"
 tags: ["项目", "账单管理", "AI", "Web 应用", "实时同步", "教程"]
 category: 项目
@@ -15,6 +16,19 @@ image: https://raw.githubusercontent.com/alvinluo-tech/alvin-luo-assets/main/eas
 > 账单分得清，代码敲得欢！✨
 
 欢迎使用 **Easy Split**！这是一个帮助你和小伙伴们轻松分摊账单的应用。无论是聚餐、旅行还是日常开销，Easy Split 都能帮你自动识别收据、智能分配费用，让AA制变得简单又准确。
+
+---
+
+## 🌐 在线体验
+
+**[🚀 立即体验 Easy Split](https://easy-split-sandy.vercel.app/dashboard)**
+
+*无需下载，打开即用。支持移动端和桌面端浏览器。*
+
+> 💡 **快速开始提示**：
+> - 注册账号只需 30 秒
+> - 可以先创建社区体验完整流程
+> - 支持上传测试收据查看 AI 识别效果
 
 ---
 

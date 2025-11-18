@@ -5,7 +5,7 @@ description: "A cross-platform focus timer application built with Tauri, React, 
 tags: ["project", "tauri", "react", "rust", "productivity", "open-source"]
 category: Projects
 draft: false
-pinned: true
+pinned: false
 # TODO: 添加封面图片
 image: https://i.ibb.co/FbmmdH2k/3292708-D-6920-4-B9-C-8-BFD-6-ECAB5-F1-AACE.png
 ---
