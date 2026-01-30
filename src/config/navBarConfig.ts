@@ -57,7 +57,7 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
     },
         {
       name: "Instagram",
-      url: "https://www.instagram.com/louyaosheng16",
+      url: "https://www.instagram.com/alvinluo_lys",
       icon: "instagram",
       external: true,
     },
