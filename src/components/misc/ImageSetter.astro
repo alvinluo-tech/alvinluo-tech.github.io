@@ -1,0 +1,105 @@
+---
+interface Props {
+  src: string;
+  alt?: string;
+  caption?: string;
+  maxHeight?: string;
+  aspectRatio?: string;
+}
+
+const { 
+  src, 
+  alt = "图片", 
+  caption,
+  maxHeight = "550px",
+  aspectRatio
+} = Astro.props;
+
+// R2 CDN 基础 URL
+const baseUrl = "https://pub-996ee35c86674a47bf3eb5e069624f90.r2.dev/";
+
+// 如果 src 已经是完整链接则直接用，否则拼接 R2 地址
+const fullSrc = src.startsWith('http') ? src : `${baseUrl}${src}`;
+---
+
+<div class="image-container">
+  <figure class="image-figure">
+    <img
+      src={fullSrc}
+      alt={alt}
+      loading="lazy" 
+      decoding="async"
+      class="blog-image"
+      style={`max-height: ${maxHeight}; ${aspectRatio ? `aspect-ratio: ${aspectRatio};` : ''}`}
+    />
+    {caption && (
+      <figcaption class="image-caption">
+        {caption}
+      </figcaption>
+    )}
+  </figure>
+</div>
+
+<style>
+  .image-container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+
+  .image-figure {
+    margin: 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .blog-image {
+    display: block;
+    margin: 0 auto;
+    width: auto;
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    cursor: zoom-in;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    object-fit: contain;
+  }
+
+  .blog-image:hover {
+    transform: scale(1.01);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  }
+
+  .image-caption {
+    font-size: 14px;
+    color: #888;
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  /* 深色模式支持 */
+  @media (prefers-color-scheme: dark) {
+    .blog-image {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .blog-image:hover {
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+    }
+
+    .image-caption {
+      color: #aaa;
+    }
+  }
+
+  /* 响应式设计 */
+  @media (max-width: 768px) {
+    .image-container {
+      margin: 1.5rem 0;
+    }
+
+    .blog-image {
+      border-radius: 8px;
+    }
+  }
+</style>

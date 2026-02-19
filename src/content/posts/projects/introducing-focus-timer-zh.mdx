@@ -9,11 +9,13 @@ pinned: true
 image: https://i.ibb.co/FbmmdH2k/3292708-D-6920-4-B9-C-8-BFD-6-ECAB5-F1-AACE.png
 ---
 
-> 🌏 **Language / 语言**: [English Version (英文版)](/posts/introducing-focus-timer/) | [中文](#)
+import ImageSetter from '@/components/misc/ImageSetter.astro';
+
+> 🌏 **Language / 语言**: [English Version (英文版)](/posts/projects/introducing-focus-timer/) | [中文](#)
 
 ## 🎯 项目介绍
 
-我很高兴与大家分享我的最新项目 - **FocusTimer**，一款现代化的桌面专注计时应用，旨在帮助你保持高效并有效管理时间。这个跨平台应用采用 Tauri 2.0、React 19 和 Rust 等前沿技术构建，将番茄工作法和灵活的时间追踪功能带到你的桌面。
+我很高兴与大家分享我的最新项目 - **FocusTimer**,一款现代化的桌面专注计时应用，旨在帮助你保持高效并有效管理时间。这个跨平台应用采用 Tauri 2.0、React 19 和 Rust 等前沿技术构建，将番茄工作法和灵活的时间追踪功能带到你的桌面。
 
 ::github{repo="alvinluo-tech/tauri-FocusTimer"}
 
@@ -106,52 +108,33 @@ FocusTimer 允许你将工作组织成**任务组**和**单个任务**。例如�
 
 ### 主界面
 
-<!-- 📷 TODO: 添加主界面截图 -->
-<!-- 建议图片路径: /assets/images/posts/focus-timer/main-interface.png -->
-<!-- 或使用 GitHub 仓库图片: https://raw.githubusercontent.com/alvinluo-tech/tauri-FocusTimer/main/screenshots/main-interface.png -->
-
-![主界面](https://raw.githubusercontent.com/alvinluo-tech/tauri-FocusTimer/main/screenshots/main-interface.png)
+<ImageSetter src="https://raw.githubusercontent.com/alvinluo-tech/tauri-FocusTimer/main/screenshots/main-interface.png" alt="主界面" caption="主界面一目了然地展示所有任务组和任务" />
 
 主界面一目了然地展示所有任务组和任务。你可以快速创建、编辑或启动任何任务，只需点击几次。
 
 ### 计时器界面
 
-<!-- 📷 TODO: 添加计时器运行界面截图 -->
-<!-- 建议图片路径: /assets/images/posts/focus-timer/timer-running.png -->
-
-![计时器界面 - 运行中](https://raw.githubusercontent.com/alvinluo-tech/tauri-FocusTimer/main/screenshots/timer.png)
+<ImageSetter src="https://raw.githubusercontent.com/alvinluo-tech/tauri-FocusTimer/main/screenshots/timer.png" alt="计时器界面 - 运行中" caption="简洁的计时器界面，大字体显示配有进度条" />
 
 当任务运行时，计时器以大字体格式显示，配有进度条。简洁的界面让你专注于手头的任务。
 
-<!-- 📷 TODO: 添加计时器暂停界面截图 -->
-<!-- 建议图片路径: /assets/images/posts/focus-timer/timer-paused.png -->
-
-![计时器界面 - 暂停](https://raw.githubusercontent.com/alvinluo-tech/tauri-FocusTimer/main/screenshots/timer-paused.png)
+<ImageSetter src="https://raw.githubusercontent.com/alvinluo-tech/tauri-FocusTimer/main/screenshots/timer-paused.png" alt="计时器界面 - 暂停" caption="暂停状态的计时器，展示自定义背景效果" />
 
 暂停状态的计时器，展示自定义背景效果。
 
 ### 统计面板
 
-<!-- 📷 TODO: 添加统计报告列表视图截图 -->
-<!-- 建议图片路径: /assets/images/posts/focus-timer/statistics-list.png -->
-
-![统计 - 列表视图](https://raw.githubusercontent.com/alvinluo-tech/tauri-FocusTimer/main/screenshots/statistics-report.png)
+<ImageSetter src="https://raw.githubusercontent.com/alvinluo-tech/tauri-FocusTimer/main/screenshots/statistics-report.png" alt="统计 - 列表视图" caption="详细的统计视图，列表格式展示" />
 
 统计视图提供交互式饼图和详细列表视图。切换不同时间段来分析你的生产力模式。
 
-<!-- 📷 TODO: 添加统计报告图表视图截图 -->
-<!-- 建议图片路径: /assets/images/posts/focus-timer/statistics-chart.png -->
-
-![统计 - 图表视图](https://raw.githubusercontent.com/alvinluo-tech/tauri-FocusTimer/main/screenshots/statistics-chart.png)
+<ImageSetter src="https://raw.githubusercontent.com/alvinluo-tech/tauri-FocusTimer/main/screenshots/statistics-chart.png" alt="统计 - 图表视图" caption="交互式饼图展示任务间的时间分布" />
 
 交互式饼图展示任务间的时间分布和详细指标。
 
 ### 设置面板
 
-<!-- 📷 TODO: 添加设置界面截图 -->
-<!-- 建议图片路径: /assets/images/posts/focus-timer/settings.png -->
-
-![设置界面](https://raw.githubusercontent.com/alvinluo-tech/tauri-FocusTimer/main/screenshots/settings-interface.png)
+<ImageSetter src="https://raw.githubusercontent.com/alvinluo-tech/tauri-FocusTimer/main/screenshots/settings-interface.png" alt="设置界面" caption="直观的设置界面供个性化定制" />
 
 自定义背景、调整透明度和切换语言 - 一切都在直观的设置界面中完成。
 
@@ -232,5 +215,4 @@ FocusTimer 是基于 MIT 许可证的开源项目。如果你觉得它有用或�
 
 - 📖 [详细使用指南](https://github.com/alvinluo-tech/tauri-FocusTimer/blob/main/USAGE.md)
 - 📸 [应用截图](https://github.com/alvinluo-tech/tauri-FocusTimer/tree/main/screenshots)
-
 

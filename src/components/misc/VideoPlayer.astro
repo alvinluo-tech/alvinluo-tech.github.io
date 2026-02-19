@@ -1,0 +1,122 @@
+---
+interface Props {
+  src: string;
+  caption?: string;
+  maxHeight?: string;
+  poster?: string;
+  aspectRatio?: string;
+}
+
+const { 
+  src, 
+  caption,
+  maxHeight = "80vh",
+  poster,
+  aspectRatio = "16/9"
+} = Astro.props;
+
+// R2 CDN 基础 URL
+const baseUrl = "https://pub-996ee35c86674a47bf3eb5e069624f90.r2.dev/";
+
+// 如果 src 已经是完整链接则直接用，否则拼接 R2 地址
+const fullSrc = src.startsWith('http') ? src : `${baseUrl}${src}`;
+const fullPoster = poster ? (poster.startsWith('http') ? poster : `${baseUrl}${poster}`) : undefined;
+---
+
+<div class="video-container">
+  <figure class="video-figure">
+    <div class="video-wrapper">
+      <video
+        src={fullSrc}
+        poster={fullPoster}
+        controls
+        playsinline
+        preload="metadata"
+        class="blog-video"
+        style={`max-height: ${maxHeight}; aspect-ratio: ${aspectRatio};`}
+      >
+        您的浏览器不支持视频播放。
+      </video>
+    </div>
+    {caption && (
+      <figcaption class="video-caption">
+        {caption}
+      </figcaption>
+    )}
+  </figure>
+</div>
+
+<style>
+  .video-container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+    width: 100%;
+  }
+
+  .video-figure {
+    margin: 0;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .video-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .blog-video {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: contain;
+    background: #000;
+    transition: transform 0.3s ease;
+  }
+
+  .blog-video:hover {
+    transform: scale(1.01);
+  }
+
+  .video-caption {
+    font-size: 14px;
+    color: #888;
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  /* 深色模式支持 */
+  @media (prefers-color-scheme: dark) {
+    .video-wrapper {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .video-caption {
+      color: #aaa;
+    }
+  }
+
+  /* 响应式设计 */
+  @media (max-width: 768px) {
+    .video-container {
+      margin: 1.5rem 0;
+    }
+
+    .video-wrapper {
+      border-radius: 8px;
+    }
+
+    .blog-video {
+      border-radius: 8px;
+      max-height: 60vh;
+    }
+  }
+</style>
