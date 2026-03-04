@@ -213,6 +213,7 @@ export type WidgetComponentType =
   | "tags"
   | "toc"
   | "advertisement"
+  | "music-player"
   | "custom";
 
 export type WidgetComponentConfig = {
@@ -467,110 +468,53 @@ export type FriendLink = {
   enabled: boolean; // 是否启用
 };
 
+
 // 音乐播放器配置
 export type MusicPlayerConfig = {
-  // 基础功能开关
-  enable: boolean; // 启用音乐播放器功能
+	// 使用方式：'meting' 或 'local'
+	mode?: "meting" | "local"; // "meting" 使用 Meting API，"local" 使用本地音乐列表
 
-  // 播放器模式配置
-  mode?: "local" | "meting"; // 播放器模式："local" 本地音乐，"meting" 在线音乐
+	// 默认音量 (0-1)
+	volume?: number;
 
-  // Meting API 配置
-  meting?: {
-    // Meting API 地址
-    api?: string;
+	// 播放模式：'list'=列表循环, 'one'=单曲循环, 'random'=随机播放
+	playMode?: "list" | "one" | "random";
 
-    // 歌单配置
-    playlist?: {
-      id?: string; // 歌单ID
-      server?: "netease" | "tencent" | "kugou" | "xiami" | "baidu"; // 音乐平台
-      type?: "playlist" | "album" | "song"; // 类型
-    };
+	// 是否显示歌词
+	showLyrics?: boolean;
 
-    // 备用 API 配置
-    fallbackApis?: string[];
-  };
+	// 是否在导航栏显示音乐播放器
+	showInNavbar?: boolean;
 
-  // 本地音乐配置
-  local?: {
-    // 本地播放列表
-    // 本地音乐文件路径（相对于 public 目录）
-    playlist?: Array<{
-      id: number;
-      title: string;
-      artist: string;
-      cover: string;
-      url: string;
-      duration: number;
-    }>;
-  };
+	// Meting API 配置
+	meting?: {
+		// Meting API 地址
+		api?: string;
 
-  // 播放器行为配置
-  behavior?: {
-    // 自动播放
-    autoplay?: boolean;
+		// 音乐平台：netease=网易云音乐, tencent=QQ音乐, kugou=酷狗音乐, xiami=虾米音乐, baidu=百度音乐
+		server?: "netease" | "tencent" | "kugou" | "xiami" | "baidu";
 
-    // 默认音量
-    defaultVolume?: number;
+		// 类型：song=单曲, playlist=歌单, album=专辑, search=搜索, artist=艺术家
+		type?: "song" | "playlist" | "album" | "search" | "artist";
 
-    // 默认播放模式
-    defaultShuffle?: boolean;
-    defaultRepeat?: 0 | 1 | 2; // 0=不循环, 1=单曲循环, 2=列表循环
+		// 歌单/专辑/单曲 ID 或搜索关键词
+		id?: string;
 
-    // 播放器位置
-    position?: {
-      bottom?: number;
-      right?: number;
-    };
-  };
+		// 认证 token（可选）
+		auth?: string;
 
-  // 界面配置
-  ui?: {
-    // 动画配置
-    animation?: {
-      coverRotation?: {
-        enable?: boolean;
-        speed?: number;
-        pauseOnHover?: boolean;
-      };
-    };
+		// 备用 API 配置（当主 API 失败时使用）
+		fallbackApis?: string[];
+	};
 
-    // 显示配置
-    display?: {
-      showPlaylistButton?: boolean;
-      showVolumeControl?: boolean;
-      showShuffleButton?: boolean;
-      showRepeatButton?: boolean;
-      showSkipButtons?: boolean;
-    };
-
-    // 播放列表配置
-    playlist?: {
-      maxHeight?: number;
-      width?: number;
-      showTrackNumbers?: boolean;
-      showDuration?: boolean;
-    };
-  };
-
-  // 响应式配置
-  responsive?: {
-    // 移动端配置
-    mobile?: {
-      position?: {
-        bottom?: number;
-        right?: number;
-      };
-    };
-
-    // 小屏幕配置
-    smallScreen?: {};
-  };
-
-  // 错误处理配置
-  errorHandling?: {
-    showErrorMessages?: boolean;
-    errorDisplayDuration?: number;
-    autoSkipOnError?: boolean;
-  };
+	// 本地音乐配置（当 mode 为 'local' 时使用）
+	local?: {
+		playlist?: Array<{
+			name: string; // 歌曲名称
+			artist: string; // 艺术家
+			url: string; // 音乐文件路径（相对于 public 目录）
+			cover?: string; // 封面图片路径（相对于 public 目录）
+			lrc?: string; // 歌词内容，支持 LRC 格式
+		}>;
+	};
 };

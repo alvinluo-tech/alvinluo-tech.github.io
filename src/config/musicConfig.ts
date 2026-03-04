@@ -2,137 +2,60 @@ import type { MusicPlayerConfig } from "../types/config";
 
 // 音乐播放器配置
 export const musicPlayerConfig: MusicPlayerConfig = {
-  // 基础功能开关
-  enable: true, // 启用音乐播放器功能
+	// 禁用音乐播放器方法：
+	// 模板默认侧边栏和导航栏两个都显示
+	// 1. 侧边栏：在sidebarConfig.ts侧边栏配置把音乐组件enable设为false禁用即可
+	// 2. 导航栏：在本配置文件把showInNavbar设为false禁用即可
 
-  // 播放器模式配置
-  mode: "meting", // 播放器模式："local" 本地音乐，"meting" 在线音乐
+	// 是否在导航栏显示音乐播放器入口
+	showInNavbar: true,
 
-  // Meting API 配置
-  meting: {
-    // Meting API 地址，默认使用 bilibili.uno 提供的免费服务
-    // 你也可以使用其他 Meting API 服务或自建服务
-    api: "https://www.bilibili.uno/api?server=:server&type=:type&id=:id&auth=:auth&r=:r",
+	// 使用方式："meting" 使用 Meting API，"local" 使用本地音乐列表
+	mode: "meting",
 
-    // 歌单配置
-    playlist: {
-      id: "902470195", // 歌单ID
-      server: "netease", // 音乐平台：netease=网易云音乐, tencent=QQ音乐, kugou=酷狗音乐, xiami=虾米音乐, baidu=百度音乐
-      type: "playlist", // 类型：playlist=歌单, album=专辑, song=单曲
-    },
+	// 默认音量 (0-1)
+	volume: 0.7,
 
-    // 备用 API 配置（当主 API 失败时使用）
-    fallbackApis: [
-      "https://api.injahow.cn/bete/?server=:server&type=:type&id=:id",
-      "https://api.uomg.com/api/other/163music?format=json&id=:id",
-    ],
-  },
+	// 播放模式：'list'=列表循环, 'one'=单曲循环, 'random'=随机播放
+	playMode: "list",
 
-  // 本地音乐配置
-  local: {
-    // 本地播放列表
-    // 本地音乐文件路径（相对于 public 目录）
-    playlist: [
-      {
-        id: 1,
-        title: "使一颗心免于哀伤",
-        artist: "知更鸟 / HOYO-MiX / Chevy",
-        cover: "/assets/music/cover/109951169585655912.jpg",
-        url: "/assets/music/使一颗心免于哀伤-哼唱.wav",
-        duration: 240,
-      },
-    ],
-  },
+	// 是否显启用歌词
+	showLyrics: true,
 
-  // 播放器行为配置
-  behavior: {
-    // 自动播放（注意：现代浏览器通常阻止自动播放）
-    autoplay: false,
+	// Meting API 配置
+	meting: {
+		// Meting API 地址
+		// 默认使用官方 API，也可以使用自定义 API
+		api: "https://api.qijieya.cn/meting/?type=:type&id=:id",
+		// 音乐平台：netease=网易云音乐, tencent=QQ音乐, kugou=酷狗音乐, xiami=虾米音乐, baidu=百度音乐
+		server: "netease",
+		// 类型：song=单曲, playlist=歌单, album=专辑, search=搜索, artist=艺术家
+		type: "playlist",
+		// 歌单/专辑/单曲 ID 或搜索关键词
+		id: "17459518569",
+		// 认证 token（可选）
+		auth: "",
+		// 备用 API 配置（当主 API 失败时使用）
+		fallbackApis: [
+			"https://api.injahow.cn/meting/?server=:server&type=:type&id=:id",
+			"https://api.moeyao.cn/meting/?server=:server&type=:type&id=:id",
+		],
+	},
 
-    // 默认音量 (0-1)
-    defaultVolume: 0.7,
-
-    // 默认播放模式
-    defaultShuffle: true, // 随机播放
-    defaultRepeat: 2, // 循环模式：0=不循环, 1=单曲循环, 2=列表循环
-
-    // 播放器位置
-    position: {
-      bottom: 16, // 距离底部距离 (px)
-      right: 16, // 距离右侧距离 (px)
-    },
-  },
-
-  // 界面配置
-  ui: {
-    // 动画配置
-    animation: {
-      // 封面旋转动画
-      coverRotation: {
-        enable: true, // 启用封面旋转
-        speed: 3, // 旋转速度（秒/圈）
-        pauseOnHover: true, // 鼠标悬停时暂停旋转
-      },
-    },
-
-    // 显示配置
-    display: {
-      // 是否显示播放列表按钮
-      showPlaylistButton: true,
-
-      // 是否显示音量控制
-      showVolumeControl: true,
-
-      // 是否显示随机播放按钮
-      showShuffleButton: true,
-
-      // 是否显示循环按钮
-      showRepeatButton: true,
-
-      // 是否显示上一首/下一首按钮
-      showSkipButtons: true,
-    },
-
-    // 播放列表配置
-    playlist: {
-      // 播放列表面板最大高度 (px)
-      maxHeight: 384,
-
-      // 播放列表面板宽度 (px)
-      width: 320,
-
-      // 是否显示歌曲序号
-      showTrackNumbers: true,
-
-      // 是否显示歌曲时长
-      showDuration: true,
-    },
-  },
-
-  // 响应式配置
-  responsive: {
-    // 移动端配置
-    mobile: {
-      // 移动端播放器位置
-      position: {
-        bottom: 24, // 增加底部距离，避免被手机屏幕圆角遮挡
-        right: 8,
-      },
-    },
-
-    // 小屏幕配置 (≤480px)
-    smallScreen: {},
-  },
-
-  // 错误处理配置
-  errorHandling: {
-    // 是否显示错误提示
-    showErrorMessages: true,
-
-    // 错误提示显示时长 (ms)
-    errorDisplayDuration: 3000,
-
-    // 是否在播放失败时自动跳转到下一首
-    autoSkipOnError: true,
-  },
+	// 本地音乐配置（当 mode 为 'local' 时使用）
+	// 1. 支持传入歌词文件的路径
+	// lrc: "/assets/music/lrc/使一颗心免于哀伤-哼唱.lrc",
+	// 2. 或者直接填入歌词字符串内容
+	// lrc: "[00:00.00]歌词内容...",
+	local: {
+		playlist: [
+			{
+				name: "使一颗心免于哀伤",
+				artist: "知更鸟 / HOYO-MiX / Chevy",
+				url: "/assets/music/使一颗心免于哀伤-哼唱.mp3",
+				cover: "/assets/music/cover/109951169585655912.webp",
+				lrc: "",
+			},
+		],
+	},
 };

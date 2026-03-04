@@ -109,6 +109,24 @@ export const ja: Translation = {
   [Key.backToHome]: "ホームに戻る",
 
   // Music Player
+  [Key.music]: "ミュージック",
+  [Key.musicNoPlaying]: "再生中の曲なし",
+  [Key.musicLyrics]: "歌詞",
+  [Key.musicVolume]: "音量",
+  [Key.musicPlayMode]: "再生モード",
+  [Key.musicPrev]: "前の曲",
+  [Key.musicNext]: "次の曲",
+  [Key.musicPlaylist]: "プレイリスト",
+  [Key.musicNoLyrics]: "歌詞なし",
+  [Key.musicLoadingLyrics]: "歌詞を読み込み中...",
+  [Key.musicFailedLyrics]: "歌詞の読み込みに失敗しました",
+  [Key.musicNoSongs]: "プレイリストが空です",
+  [Key.musicError]: "ミュージックプレーヤーエラー",
+  [Key.musicPlay]: "再生",
+  [Key.musicPause]: "一時停止",
+  [Key.musicProgress]: "再生進捗",
+  [Key.musicCover]: "カバー",
+  [Key.musicNoCover]: "カバーなし",
   [Key.playlist]: "プレイリスト",
 
 

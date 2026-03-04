@@ -12,6 +12,7 @@ import { Icon } from "astro-icon/components";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { licenseConfig } from "@/config/licenseConfig";
+import AudioPlayer from "@/components/misc/AudioPlayer.astro";
 import ImageWrapper from "@/components/misc/ImageWrapper.astro";
 import PostMetadata from "@/components/content/PostMeta.astro";
 import { profileConfig } from "@/config/profileConfig";
@@ -184,6 +185,11 @@ const jsonLd = {
           </div>
         )
       }
+
+      <!-- podcast audio player -->
+      {entry.data.audio && (
+        <AudioPlayer src={entry.data.audio} title={entry.data.title} />
+      )}
 
       <Markdown class="mb-6 markdown-content onload-animation">
         <Content />

@@ -109,6 +109,24 @@ export const  en: Translation = {
   [Key.backToHome]: "Back to Home",
 
   // Music Player
+  [Key.music]: "Music",
+  [Key.musicNoPlaying]: "No music playing",
+  [Key.musicLyrics]: "Lyrics",
+  [Key.musicVolume]: "Volume",
+  [Key.musicPlayMode]: "Play Mode",
+  [Key.musicPrev]: "Previous",
+  [Key.musicNext]: "Next",
+  [Key.musicPlaylist]: "Playlist",
+  [Key.musicNoLyrics]: "No lyrics available",
+  [Key.musicLoadingLyrics]: "Loading lyrics...",
+  [Key.musicFailedLyrics]: "Failed to load lyrics",
+  [Key.musicNoSongs]: "No songs in playlist",
+  [Key.musicError]: "Music player error",
+  [Key.musicPlay]: "Play",
+  [Key.musicPause]: "Pause",
+  [Key.musicProgress]: "Progress",
+  [Key.musicCover]: "Cover",
+  [Key.musicNoCover]: "No cover",
   [Key.playlist]: "Playlist",
 
 

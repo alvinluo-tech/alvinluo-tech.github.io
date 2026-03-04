@@ -107,6 +107,24 @@ export const zh_TW: Translation = {
   [Key.backToHome]: "返回首頁",
 
   // 音樂播放器
+  [Key.music]: "音樂",
+  [Key.musicNoPlaying]: "暫無播放",
+  [Key.musicLyrics]: "歌詞",
+  [Key.musicVolume]: "音量",
+  [Key.musicPlayMode]: "播放模式",
+  [Key.musicPrev]: "上一首",
+  [Key.musicNext]: "下一首",
+  [Key.musicPlaylist]: "播放列表",
+  [Key.musicNoLyrics]: "暫無歌詞",
+  [Key.musicLoadingLyrics]: "歌詞加載中...",
+  [Key.musicFailedLyrics]: "歌詞加載失敗",
+  [Key.musicNoSongs]: "播放列表為空",
+  [Key.musicError]: "音樂播放器錯誤",
+  [Key.musicPlay]: "播放",
+  [Key.musicPause]: "暫停",
+  [Key.musicProgress]: "播放進度",
+  [Key.musicCover]: "封面",
+  [Key.musicNoCover]: "無封面",
   [Key.playlist]: "播放列表",
 
 

@@ -105,6 +105,24 @@ enum I18nKey {
   backToHome = "backToHome",
 
   // 音乐播放器
+  music = "music",
+  musicNoPlaying = "musicNoPlaying",
+  musicLyrics = "musicLyrics",
+  musicVolume = "musicVolume",
+  musicPlayMode = "musicPlayMode",
+  musicPrev = "musicPrev",
+  musicNext = "musicNext",
+  musicPlaylist = "musicPlaylist",
+  musicNoLyrics = "musicNoLyrics",
+  musicLoadingLyrics = "musicLoadingLyrics",
+  musicFailedLyrics = "musicFailedLyrics",
+  musicNoSongs = "musicNoSongs",
+  musicError = "musicError",
+  musicPlay = "musicPlay",
+  musicPause = "musicPause",
+  musicProgress = "musicProgress",
+  musicCover = "musicCover",
+  musicNoCover = "musicNoCover",
   playlist = "playlist",
 
 

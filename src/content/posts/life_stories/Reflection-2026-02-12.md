@@ -7,6 +7,7 @@ description: "记录了我来英国141天后的思考与感悟，关于时间流
 tags: ["反思", "生活记录", "AI时代", "自律", "成长", "杜伦", "英国留学"]
 category: life stories
 draft: false
+audio: "https://pub-996ee35c86674a47bf3eb5e069624f90.r2.dev/[代码块]-1772640380989-0.wav"   # Optional: AI podcast audio URL
 ---
 
 ## 杂谈

@@ -21,6 +21,9 @@ const postsCollection = defineCollection({
 		encrypted: z.boolean().optional().default(false),
 		password: z.string().optional().default(""),
 
+		/* AI podcast audio URL */
+		audio: z.string().optional().default(""),
+
 		series: z.string().optional(),
 
 		/* For internal use */

@@ -387,6 +387,8 @@
         if (!audio) return;
         audio.addEventListener("play", () => {
             isPlaying = true;
+            // Tell any podcast audio player on the page to pause
+            window.dispatchEvent(new CustomEvent('firefly:music:play'));
         });
         audio.addEventListener("pause", () => {
             isPlaying = false;
@@ -436,6 +438,19 @@
         if (typeof window !== 'undefined') {
             window.addEventListener('resize', updatePositionForScreenSize);
         }
+
+        // 当博客播客播放器开始播放时，暂停音乐
+        function onPodcastPlay() {
+            if (audio && !audio.paused) {
+                audio.pause();
+            }
+        }
+        window.addEventListener('firefly:podcast:play', onPodcastPlay);
+        // 随页面销毁一起清理
+        const _origOnDestroy = () => {
+            window.removeEventListener('firefly:podcast:play', onPodcastPlay);
+        };
+        document.addEventListener('astro:before-swap', _origOnDestroy, { once: true });
         
         if (!musicPlayerConfig.enable) {
             return;

@@ -109,6 +109,24 @@ export const ru: Translation = {
   [Key.backToHome]: "Вернуться на главную",
 
   // Плеер музыки
+  [Key.music]: "Музыка",
+  [Key.musicNoPlaying]: "Ничего не воспроизводится",
+  [Key.musicLyrics]: "Текст песни",
+  [Key.musicVolume]: "Громкость",
+  [Key.musicPlayMode]: "Режим воспроизведения",
+  [Key.musicPrev]: "Предыдущий",
+  [Key.musicNext]: "Следующий",
+  [Key.musicPlaylist]: "Плейлист",
+  [Key.musicNoLyrics]: "Текст песни недоступен",
+  [Key.musicLoadingLyrics]: "Загрузка текста...",
+  [Key.musicFailedLyrics]: "Не удалось загрузить текст",
+  [Key.musicNoSongs]: "Плейлист пуст",
+  [Key.musicError]: "Ошибка музыкального плеера",
+  [Key.musicPlay]: "Воспроизвести",
+  [Key.musicPause]: "Пауза",
+  [Key.musicProgress]: "Прогресс",
+  [Key.musicCover]: "Обложка",
+  [Key.musicNoCover]: "Нет обложки",
   [Key.playlist]: "Плейлист",
 
 
