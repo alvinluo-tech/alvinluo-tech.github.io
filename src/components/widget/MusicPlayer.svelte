@@ -134,6 +134,59 @@
     let audio: HTMLAudioElement;
     let progressBar: HTMLElement;
     let volumeBar: HTMLElement;
+    let loadRequestId = 0;
+    const resolvedUrlCache = new Map<string, string>();
+
+    function isHttpUrl(url: string): boolean {
+        return url.startsWith("http://") || url.startsWith("https://");
+    }
+
+    async function resolvePlayableUrl(url: string): Promise<string> {
+        const normalizedUrl = getAssetPath(url);
+
+        // 本地资源不需要做重定向解析
+        if (!isHttpUrl(normalizedUrl)) {
+            return normalizedUrl;
+        }
+
+        const cachedUrl = resolvedUrlCache.get(normalizedUrl);
+        if (cachedUrl) {
+            return cachedUrl;
+        }
+
+        // 先走自动重定向，拿到最终 response.url
+        try {
+            const followed = await fetch(normalizedUrl, {
+                method: "GET",
+                redirect: "follow",
+                cache: "no-store",
+                mode: "cors",
+            });
+            if (followed.ok && followed.url) {
+                resolvedUrlCache.set(normalizedUrl, followed.url);
+                return followed.url;
+            }
+        } catch {}
+
+        // 再尝试手动重定向读取 location 头（部分 API 允许）
+        try {
+            const manual = await fetch(normalizedUrl, {
+                method: "GET",
+                redirect: "manual",
+                cache: "no-store",
+                mode: "cors",
+            });
+            const location = manual.headers.get("location");
+            if (location) {
+                const finalUrl = new URL(location, normalizedUrl).href;
+                resolvedUrlCache.set(normalizedUrl, finalUrl);
+                return finalUrl;
+            }
+        } catch {}
+
+        // 解析失败时回退原始地址，让 audio 自己处理重定向
+        return normalizedUrl;
+    }
     
     async function fetchMetingPlaylist() {
         if (!meting_api || !meting_id) return;
@@ -251,12 +304,12 @@
         playSong(newIndex);
     }
     
-    function playSong(index: number) {
+    async function playSong(index: number) {
         if (index < 0 || index >= playlist.length) return;
         const wasPlaying = isPlaying;
         currentIndex = index;
         if (audio) audio.pause();
-        loadSong(playlist[currentIndex]);
+        await loadSong(playlist[currentIndex]);
         if (wasPlaying || !isPlaying) {
             setTimeout(() => {
                 if (!audio) return;
@@ -288,9 +341,10 @@
     }
     
     
-    function loadSong(song: typeof currentSong) {
+    async function loadSong(song: typeof currentSong) {
         if (!song || !audio) return;
         currentSong = { ...song };
+        const currentRequestId = ++loadRequestId;
         
         // 如果没有封面，使用默认封面
         if (!currentSong.cover) {
@@ -309,7 +363,13 @@
             audio.addEventListener("loadeddata", handleLoadSuccess, { once: true });
             audio.addEventListener("error", handleLoadError, { once: true });
             audio.addEventListener("loadstart", handleLoadStart, { once: true });
-            audio.src = getAssetPath(song.url);
+
+            const playableUrl = await resolvePlayableUrl(song.url);
+
+            // 避免切歌时旧请求覆盖当前歌曲
+            if (currentRequestId !== loadRequestId) return;
+
+            audio.src = playableUrl;
             audio.load();
         } else {
             isLoading = false;
